@@ -1,0 +1,34 @@
+{
+  "url": "https://krestya79-crypto.github.io/cyberstat/",
+  "verifiedAt": "2026-11-17T00:24:10.309Z",
+  "httpStatus": 200,
+  "releaseCommit": "2dd1bb70faa037705a6da686f0cb80afc3410fec",
+  "workflow": "https://github.com/krestya79-crypto/cyberstat/actions/runs/43987043182",
+  "manifestScope": "/cyberstat/",
+  "serviceWorkerScope": "https://krestya79-crypto.github.io/cyberstat/",
+  "offlineReload": true,
+  "verifiedSampleSize": 139,
+  "offlinePDFs": [
+    {
+      "lecture": 1,
+      "status": 200,
+      "bytes": 1776437
+    },
+    {
+      "lecture": 2,
+      "status": 200,
+      "bytes": 2020291
+    },
+    {
+      "lecture": 3,
+      "status": 200,
+      "bytes": 1414983
+    },
+    {
+      "lecture": 4,
+      "status": 200,
+      "bytes": 1492467
+    }
+  ],
+  "browserErrors": []
+}

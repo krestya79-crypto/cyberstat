@@ -1,5 +1,7 @@
 # CyberStat
 
+[Open the live application](https://krestya79-crypto.github.io/cyberstat/) · [GitHub repository](https://github.com/krestya79-crypto/cyberstat) · [Deployment workflow](https://github.com/krestya79-crypto/cyberstat/actions/workflows/pages.yml)
+
 Probability & Statistics Interactive Learning Platform. Developed by **Ahmed Waleed Gad**, under the supervision of **Dr. Mohamed Ibrahim**, Faculty of Artificial Intelligence and Informatics, Intelligent Cyber-Security Program, Horus University – Egypt.
 
 CyberStat is a static, browser-local React + TypeScript application built from the four supplied lecture PDFs. It includes an introductory page, a study overview, searchable course explorer, dedicated topic workspaces, worked-example library, formula notebook, original PDF references, and project credits.

@@ -23,6 +23,12 @@ The desktop and mobile screenshots were visually inspected. A generated solution
 
 Dependency installation and the production dependency audit report zero known advisories. Patched major KaTeX/Vitest versions and patched glob/minimatch overrides are locked and tested. Six-decimal numerical agreement is the tested target, not an arbitrary-precision guarantee for extreme tails or very large distribution parameters.
 
+## Verified GitHub Pages deployment
+
+[CyberStat is published here](https://krestya79-crypto.github.io/cyberstat/). [The release workflow](https://github.com/krestya79-crypto/cyberstat/actions/runs/43987043182) completed its build and deploy jobs successfully for release commit `2dd1bb70faa037705a6da686f0cb80afc3410fec`.
+
+A separate headless Chrome check of the actual HTTPS site returned HTTP 200, verified manifest scope `/cyberstat/` and the matching service worker scope, confirmed the sample-size example computes 139, disconnected the network, reloaded successfully, and fetched all four original PDFs offline with their original byte sizes. No browser errors were reported. Machine-readable evidence is in `docs/qa/live-deployment.json`; a screenshot is in `docs/qa/deployed-desktop.png`.
+
 ## Original source checksums (SHA-256)
 
 ```text
