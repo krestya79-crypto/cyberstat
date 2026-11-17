@@ -1,15 +1,9 @@
-# CyberStat design and information architecture
+# CyberStat design system
 
-Design direction: an editorial study desk. Ivory canvas, white paper surfaces, muted academic blue, sage for completed study, amber for source-review notes. Statistics are teaching material, never decoration. The landing illustration is a labeled, numerically generated standard-normal density with its actual central 95% region.
+The Statistical Solver reuses the existing ivory canvas, white surfaces, muted blue accent, sage annotations, amber rejection-region shading, Georgia display headings, system interface fonts, bundled KaTeX, desktop sidebar and mobile navigation.
 
-Tokens: canvas #f7f8fa; paper #ffffff; ink #22324a; secondary ink #59677b; blue #3766a4; pale blue #edf3fa; sage #426955; pale sage #edf5ef; warning #805616; borders #dfe5ed. Display headings use Georgia, interface uses a local system sans-serif stack, mathematics use bundled KaTeX. No remote fonts. Spacing scale: 4, 8, 12, 16, 24, 32, 48, 64px. Surfaces have 12–20px corners and restrained shadows. Controls have a minimum 44px touch target; keyboard focus has a visible blue outline. Reduced-motion preferences suppress transitions.
+The main workspace has four numbered steps: statistical method, relevant formula, dynamic inputs, and mathematical/graphical solution. Quick and Detailed modes share the same result. Worked Examples and Formula Notebook retain their existing list layouts, content and search/filter behavior. Source grouping identifies provenance and does not expose course-management screens.
 
-Desktop: fixed course sidebar, slim contextual header, generous workspace; calculator inputs and solutions sit alongside one another. Tablet: compact sidebar. Mobile below 760px: dedicated bottom navigation, horizontal lecture filters, single-column calculations and locally scrollable formulas/tables; safe-area padding. No page-level horizontal scrolling.
+Graphs use only observed or mathematically derived values, include labels and legends, expose their underlying data, and identify truncated supports. Small screens stack the workflow and scale chart labels. Long formulas scroll locally. Keyboard focus, reduced motion, validation, empty states, offline status and update prompting remain available.
 
-Routes use hashes for static GitHub Pages compatibility: welcome, dashboard, course, examples, formulas, topic/:id, about. A topic is the source of truth for its explanation, conditions, notation, formulas, related concepts, calculator and lecture-page references. Search covers topic titles, formula names, explanations and all original example questions. Lecture filters apply to course, formula and example collections.
-
-Progress is explicit: a student marks a topic studied. Opening a topic updates recent history, but does not assert mastery. Preferences and calculator drafts persist locally, with a graceful storage-unavailable state. No accounts or cloud synchronization are claimed.
-
-Calculations produce a structured solution once. Exactly two presentation modes select from that structure: Quick Solution and Detailed Step-by-Step. Charts, result summaries and print/PDF exports use the same result. Source answers and review notes remain separate from computed answers. Invalid or inapplicable methods never silently calculate.
-
-States: empty search has clear reset; form errors identify the field and condition; offline status distinguishes the cached app from external links; update banner waits for an explicit reload; export invokes a print stylesheet with Save as PDF guidance. Install guidance adapts to whether the browser supplies an installation prompt.
+All four supplied project details appear in the sidebar and are accessible from the mobile footer. There are no dashboards, progress widgets, lecture explanations, scientific keypad or general equation-solving page.

@@ -1,75 +1,54 @@
 import { useEffect, useRef, useState } from 'react';
-import {
-  Calculator,
-  Library,
-  FunctionSquare,
-  ArrowUpRight,
-  Search,
-  GraduationCap,
-  ChevronRight,
-} from 'lucide-react';
-import { Examples, Formulas, About } from './pages/StudyPages';
-import { EquationSolver } from './pages/EquationSolver';
-import { TopicPage } from './pages/TopicPage';
+import { Calculator, Library, FunctionSquare, Search, ChevronRight } from 'lucide-react';
+import { Examples, Formulas } from './pages/ReferencePages';
+import { StatisticalSolver } from './pages/StatisticalSolver';
 import { PwaControls, useConnection } from './components/Pwa';
-import { useStored, type Progress } from './lib/storage';
-import { topicById } from './content/topics';
+import { project } from './content/project';
 const nav = [
-  { path: 'solver', label: 'Equation Solver', icon: Calculator },
+  { path: 'solver', label: 'Statistical Solver', icon: Calculator },
   { path: 'examples', label: 'Worked Examples', icon: Library },
   { path: 'formulas', label: 'Formula Notebook', icon: FunctionSquare },
 ];
+function ProjectInformation() {
+  return (
+    <>
+      <h2>Project Information</h2>
+      <dl>
+        <dt>Student Name</dt>
+        <dd>{project.student}</dd>
+        <dt>University Name</dt>
+        <dd>{project.university}</dd>
+        <dt>Doctor Name</dt>
+        <dd>{project.doctor}</dd>
+        <dt>Subject Name</dt>
+        <dd>{project.subject}</dd>
+      </dl>
+    </>
+  );
+}
 export function App() {
-  const [hash, setHash] = useState(location.hash || '#/');
-  const [progress, setProgress, storageFailed] = useStored<Progress>('progress', {
-    studied: [],
-    recent: [],
-  });
-  const [search, setSearch] = useState('');
-  const online = useConnection();
-  const mainRef = useRef<HTMLElement>(null);
-  const previousPath = useRef('');
-  const raw = hash.replace(/^#\/?/, '');
-  const [path, query = ''] = raw.split('?');
-  const params = new URLSearchParams(query);
-  const topicId = path.startsWith('topic/') ? path.slice(6) : '';
-  const isSolver = !path || ['solver', 'dashboard', 'course'].includes(path);
-  const selected = path.startsWith('topic/') || isSolver ? 'solver' : path;
-  const title = path.startsWith('topic/')
-    ? (topicById(topicId)?.title ?? 'Topic')
-    : isSolver
-      ? 'Equation Solver'
-      : (nav.find((n) => n.path === path)?.label ??
-        (path === 'about' ? 'About CyberStat' : 'Welcome to CyberStat'));
+  const [hash, setHash] = useState(location.hash || '#/'),
+    [search, setSearch] = useState('');
+  const online = useConnection(),
+    mainRef = useRef<HTMLElement>(null),
+    previous = useRef('');
+  const [path, query = ''] = hash.replace(/^#\/?/, '').split('?'),
+    params = new URLSearchParams(query),
+    selected = !path ? 'solver' : path;
+  const title = nav.find((n) => n.path === selected)?.label ?? 'Page not found';
   useEffect(() => {
-    const onHash = () => setHash(location.hash || '#/');
-    window.addEventListener('hashchange', onHash);
-    return () => window.removeEventListener('hashchange', onHash);
+    const change = () => setHash(location.hash || '#/');
+    window.addEventListener('hashchange', change);
+    return () => window.removeEventListener('hashchange', change);
   }, []);
   useEffect(() => {
-    document.title = `${title} · CyberStat`;
-    if (previousPath.current && previousPath.current !== hash) {
+    document.title = title + ' | CyberStat';
+    if (previous.current && previous.current !== hash) {
       window.scrollTo(0, 0);
       mainRef.current?.focus({ preventScroll: true });
     }
-    previousPath.current = hash;
+    previous.current = hash;
   }, [hash, title]);
-  useEffect(() => {
-    if (topicId && topicById(topicId))
-      setProgress({
-        ...progress,
-        recent: [topicId, ...progress.recent.filter((id) => id !== topicId)].slice(0, 8),
-      });
-  }, [topicId]);
-  const study = (id: string) =>
-    setProgress({
-      ...progress,
-      studied: progress.studied.includes(id)
-        ? progress.studied.filter((x) => x !== id)
-        : [...progress.studied, id],
-    });
-  const lectureParam = Number(params.get('lecture'));
-  const lecture = [1, 2, 3, 4].includes(lectureParam) ? lectureParam : 0;
   return (
     <>
       <a
@@ -83,29 +62,20 @@ export function App() {
         Skip to content
       </a>
       <aside className="sidebar">
-        <a href="#/" className="brand" aria-label="CyberStat home">
-          <img src={`${import.meta.env.BASE_URL}icon.svg`} alt="" />
+        <a href="#/solver" className="brand" aria-label="CyberStat home">
+          <img src={import.meta.env.BASE_URL + 'icon.svg'} alt="" />
           <span>
             CyberStat<small>MAKE SENSE OF UNCERTAINTY</small>
           </span>
         </a>
-        <div className="sidebar-course">
-          <span className="course-icon">
-            <GraduationCap size={19} />
-          </span>
-          <div>
-            <strong>Probability & Statistics</strong>
-            <small>Your interactive notebook</small>
-          </div>
-        </div>
-        <span className="nav-caption">YOUR STUDY DESK</span>
+        <span className="nav-caption statistical-nav-caption">YOUR WORKSPACE</span>
         <nav aria-label="Main navigation">
           {nav.map((n) => (
             <a
               key={n.path}
+              href={'#/' + n.path}
               className={selected === n.path ? 'active' : ''}
               aria-current={selected === n.path ? 'page' : undefined}
-              href={`#/${n.path}`}
             >
               <n.icon size={19} />
               {n.label}
@@ -113,28 +83,14 @@ export function App() {
             </a>
           ))}
         </nav>
-        <div className="sidebar-note">
-          <span className="notebook-rule" />
-          <p>
-            Understand the idea.
-            <br />
-            The numbers will follow.
-          </p>
-        </div>
-        <div className="sidebar-bottom">
-          <div className="creator">
-            <span>AG</span>
-            <div>
-              <strong>Ahmed Waleed Gad</strong>
-              <small>Horus University · Egypt</small>
-            </div>
-          </div>
-        </div>
+        <section className="sidebar-bottom project-information">
+          <ProjectInformation />
+        </section>
       </aside>
       <div className="app-body">
         <header className="topbar">
           <div className="breadcrumbs">
-            <a href="#/">Your study desk</a>
+            <a href="#/solver">Your workspace</a>
             <ChevronRight size={13} />
             <span>{title}</span>
           </div>
@@ -143,19 +99,19 @@ export function App() {
               className="top-search"
               onSubmit={(e) => {
                 e.preventDefault();
-                location.hash = `/solver?q=${encodeURIComponent(search)}`;
+                location.hash = '/formulas?q=' + encodeURIComponent(search);
                 setSearch('');
               }}
             >
               <Search size={15} />
               <input
-                aria-label="Search the course"
-                placeholder="Find an idea…"
+                aria-label="Search statistical formulas"
+                placeholder="Find a formula..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />
             </form>
-            <span className={`online-state ${online ? '' : 'offline'}`}>
+            <span className={'online-state ' + (online ? '' : 'offline')}>
               <span />
               {online ? 'Online' : 'Offline'}
             </span>
@@ -163,53 +119,39 @@ export function App() {
           </div>
         </header>
         <main id="main-content" ref={mainRef} tabIndex={-1} className="main-content">
-          {storageFailed && (
-            <p role="status" className="review-note">
-              Browser storage is unavailable. Progress is kept only for this session.
-            </p>
-          )}
-          {isSolver ? (
-            <EquationSolver
+          {selected === 'solver' ? (
+            <StatisticalSolver
               key={hash}
-              initialLecture={lecture}
-              initialQuery={params.get('q') ?? ''}
+              formulaId={params.get('formula') ?? undefined}
+              exampleId={params.get('example') ?? undefined}
             />
           ) : path === 'examples' ? (
-            <Examples key={hash} initialLecture={lecture} />
+            <Examples key={hash} initialSource={Number(params.get('source')) || 0} />
           ) : path === 'formulas' ? (
-            <Formulas />
-          ) : path === 'about' ? (
-            <About />
-          ) : topicId ? (
-            <TopicPage
-              id={topicId}
-              exampleId={params.get('example') ?? undefined}
-              progress={progress}
-              onStudy={study}
-            />
+            <Formulas key={hash} initialQuery={params.get('q') ?? ''} />
           ) : (
             <section className="empty-state">
-              <h1>That page isn’t in this notebook.</h1>
+              <h1>That page is no longer available.</h1>
               <a className="button primary" href="#/solver">
-                Return to your study desk
+                Open Statistical Solver
               </a>
             </section>
           )}
         </main>
         <footer className="app-footer">
-          <span>
-            CyberStat <span> / </span> A clearer way to understand statistics.
-          </span>
-          <a href="#/about">
-            Made for learning. Built with care. <ArrowUpRight size={13} />
-          </a>
+          <span>CyberStat / Statistical Problem Solver</span>
+          <span>{project.student}</span>
+          <details className="mobile-project-information">
+            <summary>Project Information</summary>
+            <ProjectInformation />
+          </details>
         </footer>
       </div>
       <nav className="mobile-nav" aria-label="Mobile navigation">
         {nav.map((n) => (
           <a
             key={n.path}
-            href={`#/${n.path}`}
+            href={'#/' + n.path}
             className={selected === n.path ? 'active' : ''}
             aria-current={selected === n.path ? 'page' : undefined}
           >

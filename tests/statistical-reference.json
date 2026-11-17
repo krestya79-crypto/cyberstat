@@ -1,0 +1,447 @@
+[
+  {
+    "id": "arithmetic-mean",
+    "values": {
+      "data": "2, 4, 4, 4, 5, 5, 7, 9"
+    },
+    "expected": 5.0
+  },
+  {
+    "id": "sample-variance",
+    "values": {
+      "data": "2, 4, 4, 4, 5, 5, 7, 9"
+    },
+    "expected": 4.571428571428571
+  },
+  {
+    "id": "population-variance",
+    "values": {
+      "data": "2, 4, 4, 4, 5, 5, 7, 9"
+    },
+    "expected": 4.0
+  },
+  {
+    "id": "sample-sd",
+    "values": {
+      "data": "2, 4, 4, 4, 5, 5, 7, 9"
+    },
+    "expected": 2.138089935299395
+  },
+  {
+    "id": "population-sd",
+    "values": {
+      "data": "2, 4, 4, 4, 5, 5, 7, 9"
+    },
+    "expected": 2.0
+  },
+  {
+    "id": "median",
+    "values": {
+      "data": "2, 4, 4, 4, 5, 5, 7, 9"
+    },
+    "expected": 4.5
+  },
+  {
+    "id": "classical-probability",
+    "values": {
+      "favorable": "2",
+      "total": "6"
+    },
+    "expected": 0.3333333333333333
+  },
+  {
+    "id": "event-union",
+    "values": {
+      "pa": "0.4",
+      "pb": "0.3",
+      "joint": "0.1"
+    },
+    "expected": 0.6
+  },
+  {
+    "id": "conditional-probability",
+    "values": {
+      "joint": "0.12",
+      "pb": "0.3"
+    },
+    "expected": 0.4
+  },
+  {
+    "id": "independent-events",
+    "values": {
+      "pa": "0.4",
+      "pb": "0.3"
+    },
+    "expected": 0.12
+  },
+  {
+    "id": "probability-tree",
+    "values": {
+      "pa": "0.3",
+      "givenA": "0.8",
+      "givenNotA": "0.1"
+    },
+    "expected": 0.31
+  },
+  {
+    "id": "normal",
+    "values": {
+      "tail": "left",
+      "a": "50",
+      "b": "55",
+      "normal": "true",
+      "strict": "false",
+      "mu": "40",
+      "sd": "5"
+    },
+    "expected": 0.9772498680518208
+  },
+  {
+    "id": "inverse",
+    "values": {
+      "tail": "left",
+      "a": "50",
+      "b": "55",
+      "normal": "true",
+      "strict": "false",
+      "mu": "40",
+      "sd": "5",
+      "prob": "0.9875"
+    },
+    "expected": 51.20701363802473
+  },
+  {
+    "id": "t",
+    "values": {
+      "tail": "right",
+      "a": "2.101",
+      "b": "55",
+      "normal": "true",
+      "strict": "false",
+      "df": "18"
+    },
+    "expected": 0.02499618143898178
+  },
+  {
+    "id": "chi",
+    "values": {
+      "tail": "right",
+      "a": "36.4",
+      "b": "55",
+      "normal": "true",
+      "strict": "false",
+      "df": "24"
+    },
+    "expected": 0.05017010230101581
+  },
+  {
+    "id": "f",
+    "values": {
+      "tail": "right",
+      "a": "3.3258",
+      "b": "55",
+      "normal": "true",
+      "strict": "false",
+      "df": "5",
+      "df2": "10"
+    },
+    "expected": 0.05000140148269153
+  },
+  {
+    "id": "mean-known",
+    "values": {
+      "tail": "left",
+      "a": "199",
+      "b": "55",
+      "normal": "true",
+      "strict": "false",
+      "mu": "200",
+      "sd": "6",
+      "n": "16"
+    },
+    "expected": 0.2524925375469229
+  },
+  {
+    "id": "mean-large",
+    "values": {
+      "tail": "left",
+      "a": "199",
+      "b": "55",
+      "normal": "true",
+      "strict": "false",
+      "mu": "200",
+      "sd": "6",
+      "n": "36"
+    },
+    "expected": 0.15865525393145707
+  },
+  {
+    "id": "mean-t",
+    "values": {
+      "tail": "left",
+      "a": "199",
+      "b": "55",
+      "normal": "true",
+      "strict": "false",
+      "mu": "200",
+      "sd": "6",
+      "n": "16"
+    },
+    "expected": 0.25755467018893047
+  },
+  {
+    "id": "variance",
+    "values": {
+      "tail": "right",
+      "a": "9.1",
+      "b": "10.745",
+      "normal": "true",
+      "strict": "false",
+      "variance": "6",
+      "n": "25"
+    },
+    "expected": 0.05017010230101581
+  },
+  {
+    "id": "proportion",
+    "values": {
+      "tail": "right",
+      "a": ".35",
+      "b": ".4",
+      "normal": "true",
+      "strict": "false",
+      "p": "0.3",
+      "n": "120"
+    },
+    "expected": 0.11599886181436714
+  },
+  {
+    "id": "proportion-moments",
+    "values": {
+      "tail": "left",
+      "a": "50",
+      "b": "55",
+      "normal": "true",
+      "strict": "false",
+      "p": "0.3",
+      "n": "125"
+    },
+    "expected": 0.04098780306383839
+  },
+  {
+    "id": "ci-known",
+    "values": {
+      "tail": "left",
+      "a": "50",
+      "b": "55",
+      "normal": "true",
+      "strict": "false",
+      "xbar": "15",
+      "sd": "5",
+      "n": "25",
+      "confidence": "95"
+    },
+    "expected": 13.040036015459947
+  },
+  {
+    "id": "ci-large",
+    "values": {
+      "tail": "left",
+      "a": "50",
+      "b": "55",
+      "normal": "true",
+      "strict": "false",
+      "xbar": "2.6",
+      "sd": "4",
+      "n": "36",
+      "confidence": "95"
+    },
+    "expected": 1.2933573436399641
+  },
+  {
+    "id": "ci-t",
+    "values": {
+      "tail": "left",
+      "a": "50",
+      "b": "55",
+      "normal": "true",
+      "strict": "false",
+      "xbar": "7.38",
+      "sd": "1.24",
+      "n": "12",
+      "confidence": "95"
+    },
+    "expected": 6.592141587710007
+  },
+  {
+    "id": "ci-summary",
+    "values": {
+      "tail": "left",
+      "a": "50",
+      "b": "55",
+      "normal": "true",
+      "strict": "false",
+      "sum": "280",
+      "sumSq": "2100",
+      "n": "40",
+      "confidence": "95"
+    },
+    "expected": 6.412848993510811
+  },
+  {
+    "id": "size-known",
+    "values": {
+      "tail": "left",
+      "a": "50",
+      "b": "55",
+      "normal": "true",
+      "strict": "false",
+      "sd": "5",
+      "confidence": "95",
+      "error": "0.05"
+    },
+    "expected": 38415.0
+  },
+  {
+    "id": "size-large",
+    "values": {
+      "tail": "left",
+      "a": "50",
+      "b": "55",
+      "normal": "true",
+      "strict": "false",
+      "sd": ".3",
+      "confidence": "95",
+      "error": "0.05"
+    },
+    "expected": 139.0
+  },
+  {
+    "id": "size-t",
+    "values": {
+      "tail": "left",
+      "a": "50",
+      "b": "55",
+      "normal": "true",
+      "strict": "false",
+      "sd": "1",
+      "confidence": "95",
+      "error": "1"
+    },
+    "expected": 7.0
+  },
+  {
+    "id": "bounds",
+    "values": {
+      "tail": "left",
+      "a": "50",
+      "b": "55",
+      "normal": "true",
+      "strict": "false",
+      "lower": "80",
+      "upper": "120",
+      "confidence": "95"
+    },
+    "expected": 40.0
+  },
+  {
+    "id": "z-score",
+    "values": {
+      "x": "75",
+      "mu": "60",
+      "sd": "5",
+      "normal": "true"
+    },
+    "expected": 3.0
+  },
+  {
+    "id": "binomial",
+    "values": {
+      "n": "10",
+      "p": "0.5",
+      "k": "3",
+      "tail": "exact"
+    },
+    "expected": 0.11718749999999999
+  },
+  {
+    "id": "poisson",
+    "values": {
+      "lambda": "4",
+      "k": "2",
+      "tail": "exact"
+    },
+    "expected": 0.14652511110987343
+  },
+  {
+    "id": "standard-error",
+    "values": {
+      "sd": "6",
+      "n": "16"
+    },
+    "expected": 1.5
+  },
+  {
+    "id": "z-test",
+    "values": {
+      "xbar": "52",
+      "mu0": "50",
+      "sd": "4",
+      "n": "25",
+      "alpha": "0.05",
+      "tail": "two",
+      "normal": "true"
+    },
+    "expected": 0.012419330651552265
+  },
+  {
+    "id": "t-test",
+    "values": {
+      "xbar": "52",
+      "mu0": "50",
+      "sd": "4",
+      "n": "25",
+      "alpha": "0.05",
+      "tail": "two",
+      "normal": "true"
+    },
+    "expected": 0.019654175116578784
+  },
+  {
+    "id": "proportion-test",
+    "values": {
+      "successes": "60",
+      "n": "100",
+      "p0": "0.5",
+      "alpha": "0.05",
+      "tail": "two"
+    },
+    "expected": 0.04550026389635843
+  },
+  {
+    "id": "chi-square-test",
+    "values": {
+      "observed": "20, 30, 50",
+      "expected": "25, 25, 50",
+      "estimated": "0",
+      "alpha": "0.05"
+    },
+    "expected": 0.36787944117144245
+  },
+  {
+    "id": "correlation",
+    "values": {
+      "xs": "1, 2, 3, 4, 5",
+      "ys": "2, 4, 5, 4, 5"
+    },
+    "expected": 0.7745966692414835
+  },
+  {
+    "id": "regression",
+    "values": {
+      "xs": "1, 2, 3, 4, 5",
+      "ys": "2, 4, 5, 4, 5"
+    },
+    "expected": 0.6000000000000001
+  }
+]

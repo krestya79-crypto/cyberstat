@@ -1,93 +1,65 @@
-# CyberStat
+# CyberStat — Statistical Problem Solver
 
-[Open the live application](https://krestya79-crypto.github.io/cyberstat/) · [GitHub repository](https://github.com/krestya79-crypto/cyberstat) · [Deployment workflow](https://github.com/krestya79-crypto/cyberstat/actions/workflows/pages.yml)
+[Live app](https://krestya79-crypto.github.io/cyberstat/) · [Existing repository](https://github.com/krestya79-crypto/cyberstat) · [Deployment workflow](https://github.com/krestya79-crypto/cyberstat/actions/workflows/pages.yml)
 
-Probability & Statistics Interactive Learning Platform. Developed by **Ahmed Waleed Gad**, under the supervision of **Dr. Mohamed Ibrahim**, Faculty of Artificial Intelligence and Informatics, Intelligent Cyber-Security Program, Horus University – Egypt.
+CyberStat uses the existing React, TypeScript, Vite, KaTeX and jStat architecture. Its primary application is **Statistical Solver**: select a method, select a relevant formula, enter validated data, and solve with mathematical working and data-driven graphs.
 
-CyberStat is a browser-local React + TypeScript application with one primary **Equation Solver** workspace integrating a scientific calculator, equation input, answer memory, and Quick/Detailed mathematical solutions. The sidebar contains Equation Solver, Worked Examples, and Formula Notebook. The existing worked-example and formula sections, lecture content, statistical calculators, PDF references, progress, and design system are preserved.
+The three main navigation sections are **Statistical Solver**, **Worked Examples**, and **Formula Notebook**. The preserved libraries retain all **47 original example parts/illustrations** and **49 original formulas/identities**, their layout, search, source filtering, notation and review notes. Links open the statistical workflow. Four original illustrations have no underlying calculation data; none is invented.
 
-The unified solver handles real numerical expressions and linear/quadratic equations in `x`, including complex conjugate quadratic roots. It supports parentheses, powers, roots, trigonometric functions with DEG/RAD modes, logarithms, factorials, percentages, constants, and `Ans`. It does not solve variable-denominator, higher-degree, transcendental, or simultaneous equations. Supported operations and numerical precision notes are shown inside the workspace. Existing lecture tools remain available in its expandable Probability & Statistics section; old `#/dashboard` and `#/course` URLs resolve to the unified application.
+## Project information
 
-## Run locally
+- Student Name: **Ahmed Waleed Reda Gad**
+- University Name: **Horus University**
+- Doctor Name: **Dr. Mohamed Ibrahim Sobh**
+- Subject Name: **Advanced Probability and Statistics**
 
-Install Node.js 24 LTS, then:
+## Statistical functionality
+
+Forty formulas are grouped into Descriptive Statistics, Probability, Probability Distributions, Sampling, Confidence Intervals, Hypothesis Testing, Correlation and Regression, and Sample Size Planning.
+
+Supported calculations include mean, sample/population variance and standard deviation, median/quartiles, classical/union/conditional/independent probabilities, total probability and Bayes rule, z-scores, normal/inverse-normal/t/chi-square/F/binomial/Poisson probabilities, sampling means/variances/proportions, standard errors, mean confidence intervals, sample-size planning, z/t/one-proportion tests, chi-square goodness of fit, Pearson correlation and least-squares regression.
+
+Quick and Detailed solutions share one calculated result. Detailed solutions include given and required information, method, formula, variable definitions, substitutions, intermediate calculations, final answer, interpretation and assumptions. Export uses the browser print dialog: choose **Save as PDF**.
+
+## Graphs and numerical conventions
+
+Charts are derived from the actual inputs and results: histograms, box plots, event-probability bars/trees, continuous densities, discrete probability masses, sampling/precision curves, confidence limits, hypothesis p-value/rejection regions, scatter plots, regression lines and residuals. No random observations or jitter are added. Plotted values are available in data tables. Visually truncated distribution tails are identified; calculations use the full probability model.
+
+Data sets support up to 2,000 finite observations per list. Quartiles use medians of halves, excluding the central observation for odd n; box-plot whiskers use actual values within 1.5×IQR. Binomial n is limited to 200 so its complete support can be plotted. Poisson rates up to 200 have an explicitly labeled plot truncation. Normal approximations for proportions require both expected counts to be at least 5. Expected chi-square counts must all be at least 5 with matching observed and expected totals. Each formula states its normality and sample-size assumptions. Failing to reject a null hypothesis does not prove it; correlation does not establish causation.
+
+Six-decimal agreement is verified for the committed reference cases. The application does not claim arbitrary precision in extreme tails. Original example answers are preserved separately from calculated results; known discrepancies remain documented in [source review notes](docs/ACADEMIC-INVENTORY.md).
+
+## Run and verify
+
+Use Node.js 24 and an installed Google Chrome for browser verification:
 
 ```sh
 npm ci
 npm run dev
-```
-
-Open the local URL printed by Vite. For the installable production version:
-
-```sh
-npm run build
-npm run preview
-```
-
-Development mode intentionally does not register a service worker. PWA verification uses the production preview over localhost, or deployment over HTTPS.
-
-## Verification
-
-```sh
 npm test
 npm run build
 npm run test:e2e
-npm audit
 ```
 
-The browser suite uses locally installed Google Chrome in headless mode. On a machine without Chrome, install Chrome or configure Playwright to use an installed Chromium browser. The tests launch and stop their own preview server on port 4173. Keep that port free.
+The browser suite starts and stops its own production preview on port 4173. It exercises all formulas and original examples, both solution modes, charts, navigation, search, 320–1440px layouts, PDF export, installation criteria, offline calculations and safe updates. Evidence is generated in the ignored `test-results/` directory. See [QA](docs/QA.md).
 
-Unit tests cover distribution reference identities, all 43 calculation problems, independent SciPy reference fixtures, validation, approximation conditions, sample-size rounding, and strict KaTeX rendering. The four extra source illustrations do not supply data for dynamic calculation. Browser tests cover navigation, search, progress persistence, solutions, all example routes, mobile/tablet/desktop overflow, print-to-PDF, PWA installability criteria, offline reloads, all cached source PDFs, and update prompting with draft retention. See [QA notes](docs/QA.md) for observed results and verification limits.
+Committed SciPy/NumPy reference fixtures avoid requiring Python during normal development or CI. With those packages installed, run `python scripts/statistical-fixtures.py` to regenerate the 40-formula reference set, or `python scripts/reference-fixtures.py` for the original examples.
 
-## Academic sources and fidelity
+## PWA and GitHub Pages
 
-See [the full inventory and discrepancy register](docs/ACADEMIC-INVENTORY.md). All 70 PDF pages were extracted and visually inspected, including image-only statistical tables. Original PDFs are bundled in `public/lectures/`. The source PDFs credit Mohamed Ebrahim Sobh / Dr. Mohamed E. Sobh as lecture author; this is distinct from the project supervision credit.
+The existing installable PWA and GitHub Actions deployment are preserved. After **Ready offline** is shown, calculations, graphs, examples, formulas, math fonts and original source citations are cached on this device. Clearing site data or browser cache eviction may remove them. There are no accounts or cloud synchronization. Updates prompt before reloading; formula-specific input drafts and solution preferences persist locally.
 
-The application preserves original given values and stated answers while identifying arithmetic, table, sign, and notation discrepancies. It does not force computed answers to match an erroneous slide. Computations use jStat plus analytic special cases; results are compared against independent SciPy fixtures. Numbers retain full precision until display. Standard normal table rounding can differ from full-precision computations. App-derived exercise answers and additional normality assumptions are labeled.
+The workflow tests, builds and deploys `main`. It automatically sets `VITE_BASE_PATH` to the GitHub repository subdirectory, including manifest scope, service-worker scope, assets and source references. For another host, set the appropriate base before building. `npm run preview` serves the production build locally. Verify actual deployment using the Actions result and published URL.
 
-The lecture’s large-sample unknown-σ method uses z with s for n≥30. Small approximately normal samples with unknown σ use t and n−1 degrees of freedom. Sampling-proportion probabilities require np≥5 and n(1−p)≥5 and use the lecture’s uncorrected normal approximation. Expected counts use the computed probability, then round for a whole-person interpretation. Sample-size requirements round up, with a strict-bound option.
+## Architecture and cleanup
 
-Hypothesis testing, fitting straight lines, ANOVA, stochastic models, and Poisson processes occur only in the full-course outline on Lecture 1 p2. Their actual teaching material is absent from these four PDFs. They are explicitly identified as awaiting additional sources; no invented lessons or calculators are presented for them.
+- `src/content/statistics.ts`: category/formula metadata, parameters, assumptions and input definitions.
+- `src/math/`: the preserved calculation/distribution engine plus the added statistical methods and typed plot data.
+- `src/pages/StatisticalSolver.tsx`: the four-step workflow.
+- `src/pages/ReferencePages.tsx`: the preserved example and formula-library layouts.
+- `src/components/`: mathematical rendering, statistical graphs, solution presentation and PWA controls.
+- `public/lectures/`: original PDFs required by retained example citations, not a lecture-browsing feature.
 
-## PWA, privacy and PDF export
+The scientific keypad, general equation parser, lecture explanation pages, course explorer/overview, progress UI, obsolete routes and their unused implementations/styles/tests are removed. Original example/formula records, required source PDFs, app icons, configuration, package manifests, lockfile and deployment settings remain. No dependency was added.
 
-The manifest has standalone display, relative icons and the configured deployment scope. The service worker precaches the app, bundled math fonts, images and four original lecture PDFs (approximately 8 MB total). Wait for “Ready for offline study” after the first successful online visit. Offline calculations, lecture reading and progress work on this device. External links outside CyberStat require internet. Cache eviction, private browsing restrictions, or clearing site data can remove offline resources and progress.
-
-Install with the browser prompt where available; otherwise use Chrome/Edge’s Install app menu, or Safari’s Share → Add to Home Screen. Meeting Chromium installation criteria is automatically tested; the operating-system installation UI is browser controlled. Updates prompt before reloading. Draft inputs and preferences are stored as they change. Progress is explicitly marked by the student; opening a page records recent history without claiming mastery. There are no accounts or cloud synchronization.
-
-Export invokes the browser print dialog. Choose **Save as PDF**. The print layout includes CyberStat identity, topic, problem, given values, formula, the selected Quick or Detailed working, interpretation, chart, source answer/review notes, and credits. Export is local; it does not contact a PDF service.
-
-## GitHub Pages
-
-The included GitHub Actions workflow tests, builds, and deploys the static application. Hash routing works without a server rewrite. The workflow automatically sets Vite’s base to `/<repository-name>/` (or `/` for an account root `username.github.io` repository). This also controls the manifest scope, service worker scope, assets and PDF paths.
-
-1. Push the project to the `main` branch of a GitHub repository.
-2. In Settings → Pages, set the source to **GitHub Actions**.
-3. Run the **Verify and deploy CyberStat** workflow, or push a change to `main`.
-4. Verify the successful deploy job and open the returned Pages URL.
-
-For a custom domain or a different host, set `VITE_BASE_PATH=/` before `npm run build`. For a manual project-path build in PowerShell:
-
-```powershell
-$env:VITE_BASE_PATH='/cyberstat/'
-npm run build
-```
-
-Do not upload a root-path build to a project subdirectory. Every public source PDF must be permitted to be served alongside the application. No secrets, tokens, backend services, or paid infrastructure are required.
-
-## Structure
-
-```text
-src/content/     Lecture topics, formulas, methods, examples, source text
-src/math/        Numerical distributions, calculation engine, validation
-src/components/ Math rendering, charts, calculator workspace, PWA controls
-src/pages/      Learning pages and dedicated topic layout
-src/lib/        Local persistence
-public/         App icons and original lecture PDFs
-tests/          Mathematical, source-fixture and browser tests
-docs/           Inventory, design system, source review and QA evidence
-```
-
-The engine returns one structured solution consumed by both presentation modes, charts and print export. It is independent of React and can later be used by an actual backend. The initial release deliberately has no backend.
-
-Implementation references: [Vite static deployment](https://vite.dev/guide/static-deploy), [Vite PWA service worker behavior](https://vite-pwa-org.netlify.app/guide/service-worker-strategies-and-behaviors), [Vite PWA update prompts](https://vite-pwa-org.netlify.app/guide/prompt-for-update), [jStat project](https://github.com/jstat/jstat), [KaTeX](https://katex.org/docs/api).
+Method references: [NIST mean intervals and one-sample t tests](https://www.itl.nist.gov/div898/handbook/eda/section3/eda352.htm), [NIST chi-square goodness of fit](https://www.itl.nist.gov/div898/handbook/eda/section3/eda35f.htm), [jStat distributions](https://jstat.github.io/distributions.html).

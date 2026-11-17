@@ -16,7 +16,11 @@ export function density(curve: Curve, x: number): number {
   const z = (x - curve.center) / curve.scale;
   if (curve.family === 'normal') return jStat.normal.pdf(z, 0, 1) / curve.scale;
   if (curve.family === 't') return jStat.studentt.pdf(z, curve.df) / curve.scale;
-  if (curve.family === 'chi') return z <= 0 ? 0 : jStat.chisquare.pdf(z, curve.df) / curve.scale;
+  if (curve.family === 'chi') {
+    if (z < 0) return 0;
+    if (z === 0) return curve.df === 2 ? 0.5 / curve.scale : curve.df! < 2 ? Infinity : 0;
+    return jStat.chisquare.pdf(z, curve.df) / curve.scale;
+  }
   return z <= 0 ? 0 : jStat.centralF.pdf(z, curve.df, curve.df2) / curve.scale;
 }
 export function chartDomain(curve: Curve): [number, number] {

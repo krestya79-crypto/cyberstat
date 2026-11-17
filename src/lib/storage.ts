@@ -24,7 +24,3 @@ export function useStored<T>(key: string, initial: T) {
   }
   return [value, update, failed] as const;
 }
-export interface Progress {
-  studied: string[];
-  recent: string[];
-}

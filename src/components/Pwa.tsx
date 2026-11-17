@@ -87,7 +87,7 @@ export function PwaControls() {
         <div className="status-banner" role="status">
           <WifiOff size={17} /> Offline ·{' '}
           {navigator.serviceWorker?.controller
-            ? 'Use the saved app, calculators and lecture PDFs.'
+            ? 'Use the saved solver, worked examples and formulas.'
             : 'Only resources already loaded in this tab may be available.'}
         </div>
       )}
@@ -100,7 +100,7 @@ export function PwaControls() {
       {ready && (
         <div className="toast" role="status">
           <CheckCircle2 size={18} />
-          <span>Ready for offline study, including all four lectures.</span>
+          <span>Ready offline: statistical calculations, graphs, examples and formulas.</span>
           <button aria-label="Dismiss offline message" onClick={() => setReady(false)}>
             <X size={17} />
           </button>
@@ -120,7 +120,7 @@ export function PwaControls() {
       {help && (
         <section className="install-help" aria-label="Installation guidance">
           <div className="section-heading">
-            <strong>Take your study desk with you</strong>
+            <strong>Take your statistical workspace with you</strong>
             <button aria-label="Close installation guidance" onClick={() => setHelp(false)}>
               <X size={18} />
             </button>
@@ -131,7 +131,7 @@ export function PwaControls() {
           </p>
           <p className="muted">
             Installation is available on supported browsers over HTTPS or localhost. Load the app
-            online once and wait for “Ready for offline study”. Everything is stored on this device.
+            online once and wait for “Ready offline”. Everything is stored on this device.
           </p>
         </section>
       )}

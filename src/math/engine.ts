@@ -142,12 +142,12 @@ export function calculate(method: Method, values: Values): Solution {
     }
     if (method === 'ci-known' && n < 30) needNormal(values);
     if ((method === 'ci-large' || method === 'ci-summary') && n < 30)
-      throw new ValidationError('n', 'The lecture’s large-sample z method requires n ≥ 30.');
+      throw new ValidationError('n', 'The selected large-sample z method requires n ≥ 30.');
     if (method === 'ci-t') {
       if (n >= 30)
         throw new ValidationError(
           'n',
-          'This lecture workspace is for n < 30. Select the large-sample z interval for n ≥ 30.',
+          'This workspace is for n < 30. Select the large-sample z interval for n ≥ 30.',
         );
       needNormal(values);
     }
@@ -172,7 +172,7 @@ export function calculate(method: Method, values: Values): Solution {
           ? 'Unknown σ, n<30 and an approximately normal population require a t interval with n−1 degrees of freedom.'
           : method === 'ci-known'
             ? 'The population standard deviation is known; use z under the normal/large-sample conditions.'
-            : 'The population standard deviation is unknown and n≥30; follow the lecture’s large-sample z approximation.',
+            : 'The population standard deviation is unknown and n≥30; follow the selected large-sample z approximation.',
         formula,
       ),
     );
@@ -214,7 +214,7 @@ export function calculate(method: Method, values: Values): Solution {
     ];
     if (method === 'ci-large' || method === 'ci-summary')
       notes.push(
-        'Lecture convention: z with estimated s for n≥30. This is a large-sample approximation.',
+        'Selected convention: z with estimated s for n≥30. This is a large-sample approximation.',
       );
   } else if (isSize) {
     const sd = positive(values, 'sd', 'standard deviation'),
@@ -272,7 +272,7 @@ export function calculate(method: Method, values: Values): Solution {
         method === 'size-t'
           ? 'For an approximately normal population and n<30, the critical t value changes with n. Search the permitted integer sample sizes.'
           : method === 'size-large'
-            ? 'Use a planning estimate s and the lecture’s large-sample z method, with n≥30.'
+            ? 'Use a planning estimate s and the selected large-sample z method, with n≥30.'
             : 'Use the known population standard deviation and a z critical value.',
         formula,
       ),
@@ -310,7 +310,7 @@ export function calculate(method: Method, values: Values): Solution {
       { label: 'Target half-width', value: v(error) },
     ];
     notes.push(
-      'L4 p14 calls confidence half-width “standard error”. Sampling SE alone is spread/√n. A planning s is an estimate; future spread can differ.',
+      'The source calls confidence half-width “standard error”. Sampling SE alone is spread/√n. A planning s is an estimate; future spread can differ.',
     );
   } else if (method === 'proportion-moments') {
     const p = num(values, 'p', 'population proportion'),
@@ -355,7 +355,7 @@ export function calculate(method: Method, values: Values): Solution {
     ];
     if (n * p < 5 || n * (1 - p) < 5)
       notes.push(
-        'Moments are valid, but the lecture’s normal approximation conditions are not met; no normal probability is calculated.',
+        'Moments are valid, but the selected normal approximation conditions are not met; no normal probability is calculated.',
       );
   } else if (method === 'inverse') {
     const mean = num(values, 'mu', 'population mean'),
@@ -436,11 +436,11 @@ export function calculate(method: Method, values: Values): Solution {
       if (method === 'mean-large' && n < 30)
         throw new ValidationError(
           'n',
-          'The unknown-σ z approximation in the lecture requires n ≥ 30.',
+          'The unknown-σ z approximation for this method requires n ≥ 30.',
         );
       if (method === 'mean-t') {
         if (n >= 30)
-          throw new ValidationError('n', 'Use the lecture’s large-sample z method for n ≥ 30.');
+          throw new ValidationError('n', 'Use the selected large-sample z method for n ≥ 30.');
         needNormal(values);
         family = 't';
         df = n - 1;
@@ -457,7 +457,7 @@ export function calculate(method: Method, values: Values): Solution {
         ),
       );
       if (method === 'mean-large')
-        notes.push('The lecture uses s in a large-sample z approximation.');
+        notes.push('This method uses s in a large-sample z approximation.');
     } else if (method === 't') {
       df = integer(values, 'df', 1, 'degrees of freedom');
       family = 't';
@@ -533,7 +533,7 @@ export function calculate(method: Method, values: Values): Solution {
       steps.push(
         step(
           'Check the normal approximation',
-          'Both expected counts must be at least five under the lecture rule.',
+          'Both expected counts must be at least five under the normal-approximation rule.',
           `nP=${v(n * p)}\\geq5,\\quad n(1-P)=${v(n * (1 - p))}\\geq5`,
         ),
         step(
@@ -543,7 +543,7 @@ export function calculate(method: Method, values: Values): Solution {
         ),
       );
       notes.push(
-        'Lecture method: normal approximation without continuity or finite-population correction.',
+        'Selected method: normal approximation without continuity or finite-population correction.',
       );
     } else throw new Error('Unsupported probability method.');
     if (family === 'normal' || method.startsWith('mean-')) {
@@ -581,7 +581,7 @@ export function calculate(method: Method, values: Values): Solution {
               : family === 'chi'
                 ? 'Use chi-square with the given degrees of freedom.'
                 : method === 'proportion'
-                  ? 'The expected-count checks permit the lecture’s normal approximation.'
+                  ? 'The expected-count checks permit the selected normal approximation.'
                   : 'Use a normal distribution under the stated population and sampling assumptions.',
         formula,
       ),
@@ -606,7 +606,7 @@ export function calculate(method: Method, values: Values): Solution {
     steps.push(
       step(
         'Evaluate cumulative probabilities',
-        'The CDF gives the area to the left. Use the lecture table or a numerical distribution function.',
+        'The CDF gives the area to the left. Use the distribution table or a numerical distribution function.',
         `${cumulativeLabel}(${v(transformedA)})=${v(fa)}${tail === 'between' ? `,\\quad ${cumulativeLabel}(${v(transformedB)})=${v(fb)}` : ''}`,
       ),
       step(

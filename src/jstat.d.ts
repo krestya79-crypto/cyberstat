@@ -9,5 +9,7 @@ declare module 'jstat' {
     studentt: Distribution;
     chisquare: Distribution;
     centralF: Distribution;
+    binomial: Distribution;
+    poisson: Distribution;
   };
 }

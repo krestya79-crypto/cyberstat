@@ -10,88 +10,23 @@
   .top-search input {
     font-size: 12px;
   }
-  .hero-copy > p,
   .page-heading > p,
-  .concept-panel > p,
-  .about-columns p,
   .example-content > p,
   .problem-panel p {
     font-size: 14px;
     line-height: 1.85;
   }
-  .hero-footnote {
-    font-size: 11px;
-  }
-  .hero-actions .button {
-    font-size: 13px;
-  }
-  .hero-actions .text-link {
-    font-size: 12px;
-  }
-  .lecture-path h3 {
-    font-size: 14px;
-  }
-  .lecture-path p,
-  .path-bottom {
-    font-size: 12px;
-  }
-  .visual-caption p {
-    font-size: 11px;
-  }
-  .visual-link {
-    font-size: 12px;
-  }
-  .formula-chip {
-    font-size: 12px;
-  }
-  .capability-list strong {
-    font-size: 13px;
-  }
-  .capability-list p > span {
-    font-size: 12px;
-  }
-  .continue-panel p,
-  .progress-panel > p,
-  .practice-prompt > p,
-  .quiet-empty {
-    font-size: 13px;
-  }
-  .lecture-rows h3,
-  .topic-list h3 {
-    font-size: 15px;
-  }
-  .lecture-rows p,
-  .topic-list p {
-    font-size: 12px;
-  }
-  .recent-list > a {
-    font-size: 13px;
-  }
-  .recent-list small {
-    font-size: 11px;
-  }
   .search-field input {
     font-size: 13px;
   }
-  .lecture-filters button {
+  .source-filters button {
     font-size: 12px;
   }
-  .formula-library h2,
-  .formula-panel h3 {
+  .formula-library h2 {
     font-size: 13px;
   }
-  .formula-library .math-block,
-  .formula-panel .math-block {
+  .formula-library .math-block {
     font-size: 14px;
-  }
-  .symbol-key {
-    font-size: 11px;
-  }
-  .conditions summary {
-    font-size: 13px;
-  }
-  .conditions ul {
-    font-size: 12px;
   }
   .review-note,
   .review-note p,
@@ -100,7 +35,6 @@
   }
   .field,
   .field > span,
-  .method-select,
   .example-select {
     font-size: 12px;
   }
@@ -112,12 +46,6 @@
     font-size: 15px;
   }
   .check-field {
-    font-size: 12px;
-  }
-  .region-field legend {
-    font-size: 12px;
-  }
-  .segmented > button {
     font-size: 12px;
   }
   .form-actions .button {
@@ -133,8 +61,7 @@
   .input-panel > .section-heading > .small {
     font-size: 11px;
   }
-  .example-select select,
-  .method-select select {
+  .example-select select {
     font-size: 12px;
   }
   .solution-toggle button {
@@ -185,41 +112,11 @@
   .curve-inspect input {
     min-height: 44px;
   }
-  .related-link,
-  .example-mini-list > a {
-    font-size: 13px;
-  }
-  .related-link small,
-  .example-mini-list small {
-    font-size: 11px;
-  }
-  .credits-panel p,
-  .review-register details p,
-  .review-register > p {
-    font-size: 13px;
-  }
-  .scope-note {
-    font-size: 12px;
-  }
-  .review-register summary {
-    font-size: 12px;
-  }
 }
 @media screen and (max-width: 1250px) {
   .sidebar nav > a {
     font-size: 12px;
   }
-  .hero-copy > p {
-    font-size: 13px;
-  }
-  .lecture-path h3 {
-    font-size: 13px;
-  }
-  .lecture-path p,
-  .path-bottom {
-    font-size: 11px;
-  }
-  .formula-panel .math-block,
   .formula-library .math-block {
     font-size: 13px;
   }
@@ -230,42 +127,15 @@
   }
 }
 @media screen and (max-width: 760px) {
-  .hero-copy > p,
   .page-heading > p,
-  .concept-panel > p,
-  .about-columns p,
   .example-content > p,
   .problem-panel p {
     font-size: 14px;
   }
-  .hero-actions .button {
-    font-size: 12px;
-  }
-  .hero-actions .text-link {
-    font-size: 11px;
-  }
-  .hero-footnote,
-  .lecture-path p,
-  .path-bottom {
-    font-size: 11px;
-  }
-  .lecture-path h3 {
-    font-size: 13px;
-  }
-  .visual-title h2 {
-    font-size: 21px;
-  }
-  .formula-chip {
-    font-size: 10px;
-    flex-shrink: 0;
-  }
-  .visual-caption p {
-    font-size: 10px;
-  }
   .search-field input {
     font-size: 12px;
   }
-  .lecture-filters button {
+  .source-filters button {
     font-size: 11px;
   }
   .field-grid {
@@ -275,7 +145,6 @@
     min-height: 46px;
   }
   .field > span,
-  .region-field legend,
   .check-field {
     font-size: 12px;
   }
@@ -286,7 +155,6 @@
   .solution-working > div > .math-block {
     font-size: 13px;
   }
-  .formula-panel .math-block,
   .formula-library .math-block {
     font-size: 13px;
   }
@@ -298,9 +166,6 @@
   .solution-toggle button {
     font-size: 10px;
   }
-  .topic-list h3 {
-    font-size: 14px;
-  }
   .curve-inspect {
     grid-template-columns: 1fr;
   }
@@ -311,16 +176,9 @@
   .interval-chart svg text {
     font-size: 20px;
   }
-  .segmented > button,
-  .lecture-filters button,
+  .source-filters button,
   .solution-toggle button {
     min-height: 44px;
-  }
-  .related-link {
-    min-width: 0;
-  }
-  .review-register summary {
-    font-size: 12px;
   }
   .breadcrumbs {
     font-size: 10px;

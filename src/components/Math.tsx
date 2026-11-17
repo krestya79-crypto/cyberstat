@@ -18,7 +18,7 @@ export function MathText({ tex, block = false }: { tex: string; block?: boolean 
   } catch {
     return (
       <span role="alert">
-        This mathematical expression could not be rendered. Please open the linked lecture page.
+        This mathematical expression could not be rendered. Please check the selected formula.
       </span>
     );
   }

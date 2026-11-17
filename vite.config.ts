@@ -12,7 +12,7 @@ export default defineConfig({
       manifest: {
         name: 'CyberStat — Probability & Statistics',
         short_name: 'CyberStat',
-        description: 'Your lecture-guided statistics study workspace.',
+        description: 'Statistical problem solving with formulas, worked solutions and data-driven graphs.',
         theme_color: '#3766a4',
         background_color: '#f7f8fa',
         display: 'standalone',

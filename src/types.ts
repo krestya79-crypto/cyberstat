@@ -19,7 +19,6 @@ export type Method =
   | 'size-t'
   | 'bounds';
 export type Values = Record<string, string>;
-export type Inputs = Record<string, number | string | boolean>;
 export interface Formula {
   name: string;
   tex: string;
@@ -29,16 +28,8 @@ export interface Topic {
   lecture: number;
   pages: string;
   title: string;
-  short: string;
-  intro: string;
-  notes: string[];
   formulas: Formula[];
-  conditions: string[];
-  symbols: string;
   methods: Method[];
-  related: string[];
-  review?: string;
-  assignment?: string;
 }
 export interface Example {
   id: string;
