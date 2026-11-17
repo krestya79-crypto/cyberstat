@@ -21,7 +21,7 @@ Forty formulas are grouped into Descriptive Statistics, Probability, Probability
 
 Supported calculations include mean, sample/population variance and standard deviation, median/quartiles, classical/union/conditional/independent probabilities, total probability and Bayes rule, z-scores, normal/inverse-normal/t/chi-square/F/binomial/Poisson probabilities, sampling means/variances/proportions, standard errors, mean confidence intervals, sample-size planning, z/t/one-proportion tests, chi-square goodness of fit, Pearson correlation and least-squares regression.
 
-Quick and Detailed solutions share one calculated result. Detailed solutions include given and required information, method, formula, variable definitions, substitutions, intermediate calculations, final answer, interpretation and assumptions. Export uses the browser print dialog: choose **Save as PDF**.
+Quick and Detailed solutions share one validated calculation result. **Quick** shows only the selected method, formula, direct input substitution, final answer, applicable units and one short interpretation. **Detailed** shows given/required information, the method rationale, variables, assumptions, every engine step and explanation, intermediate working tables where relevant, the actual-data graph, and the full interpretation. Switching modes retains the method, formula and entered inputs without recalculating. Export prints the selected mode: choose **Save as PDF**.
 
 ## Graphs and numerical conventions
 

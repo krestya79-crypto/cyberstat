@@ -143,6 +143,50 @@
 .stat-result .solution-given p {
   overflow-wrap: anywhere;
 }
+.quick-solution .quick-formula,
+.quick-solution .direct-substitution {
+  padding: 14px 0;
+  border-top: 1px solid var(--border);
+}
+.quick-solution .result-answer {
+  margin-top: 14px;
+}
+.answer-unit {
+  display: block;
+  font-size: 11px;
+  line-height: 1.7;
+  margin-top: 10px;
+}
+.interpretation-label {
+  display: block;
+  margin-top: 18px;
+}
+.method-rationale p,
+.calculation-table p {
+  font-size: 13px;
+  line-height: 1.85;
+}
+.method-rationale {
+  margin: 20px 0;
+}
+.quick-solution .math-block,
+.detailed-solution .math-block {
+  max-width: 100%;
+  overflow-x: auto;
+}
+.detailed-solution .result-answer {
+  margin-top: 24px;
+}
+.calculation-table {
+  padding: 16px 0;
+  border-top: 1px solid var(--border);
+}
+.calculation-table summary {
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  min-height: 32px;
+}
 .stat-result .solution-steps .math-block {
   font-size: 13px;
 }

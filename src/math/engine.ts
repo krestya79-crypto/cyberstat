@@ -51,6 +51,8 @@ function needNormal(values: Values) {
 }
 const step = (title: string, text: string, tex?: string): Step => ({ title, text, tex });
 export function calculate(method: Method, values: Values): Solution {
+  let concise: Solution['concise'];
+  const workingTables: NonNullable<Solution['workingTables']> = [];
   const notes: string[] = [];
   let steps: Step[] = [];
   let given = '',
@@ -76,6 +78,11 @@ export function calculate(method: Method, values: Values): Solution {
     title = 'Interval width';
     answer = `${v(value)}`;
     answerTex = `W=${v(b)}-${texNumber(a)}=${v(value)}`;
+    concise = {
+      substitutionTex: `W=${v(b)}-${texNumber(a)}`,
+      interpretation: `The supplied interval has width ${v(value)}.`,
+      unit: 'Same units as the supplied limits',
+    };
     steps = [
       step(
         'Identify the limits',
@@ -165,6 +172,14 @@ export function calculate(method: Method, values: Values): Solution {
     answerTex = `${v(lower)}<\\mu<${v(upper)}`;
     value = lower;
     interval = { lower, upper, center: mean };
+    concise = {
+      substitutionTex:
+        method === 'ci-summary'
+          ? `\\frac{${v(num(values, 'sum'))}}{${n}}\\pm ${v(critical)}\\frac{\\sqrt{(${v(num(values, 'sumSq'))}-${texNumber(num(values, 'sum'))}^2/${n})/(${n}-1)}}{\\sqrt{${n}}}`
+          : `${v(mean)}\\pm ${v(critical)}\\frac{${v(sd)}}{\\sqrt{${n}}}`,
+      interpretation: `The ${v(c * 100)}% confidence interval estimates the population mean.`,
+      unit: 'Same units as the observations',
+    };
     steps.unshift(
       step(
         'Choose the method',
@@ -264,6 +279,28 @@ export function calculate(method: Method, values: Values): Solution {
         ? 't_{\\alpha/2,n-1}\\frac{s}{\\sqrt n}\\leq e'
         : 'n\\geq\\left(\\frac{z_{\\alpha/2}s}{e}\\right)^2';
     if (method === 'size-known') formula = formula.replace('s}{e}', '\\sigma}{e}');
+    if (strict) formula = formula.replace('\\leq', '<').replace('\\geq', '>');
+    concise = {
+      substitutionTex:
+        method === 'size-t'
+          ? `\\min\\left\\{n\\in\\{2,\\ldots,29\\}:t_{${v(alpha / 2)},n-1}\\frac{${v(sd)}}{\\sqrt n}${strict ? '<' : '\\leq'}${v(error)}\\right\\}`
+          : `n${strict ? '>' : '\\geq'}\\left(\\frac{${v(critical)}\\times${v(sd)}}{${v(error)}}\\right)^2${method === 'size-large' ? ',\\quad n\\geq30' : ''}`,
+      interpretation: `Use at least ${required} independent observations to meet the target half-width.`,
+      unit: 'observations',
+    };
+    if (method === 'size-t')
+      workingTables.push({
+        title: 'Integer sample-size search',
+        explanation:
+          'Each permitted size up to the selected size is evaluated with its own t critical value; the first size satisfying the requested inequality is chosen.',
+        headers: ['n', 'df', 't critical', 't × s / √n', 'Meets target'],
+        rows: Array.from({ length: required - 1 }, (_, i) => {
+          const n = i + 2,
+            q = tQuantile(1 - alpha / 2, n - 1),
+            half = (q * sd) / Math.sqrt(n);
+          return [n, n - 1, q, half, (strict ? half < error : half <= error) ? 'Yes' : 'No'];
+        }),
+      });
     answer = `${required} observations`;
     answerTex = `n=${required}`;
     steps = [
@@ -325,6 +362,11 @@ export function calculate(method: Method, values: Values): Solution {
     formula = 'E(\\hat P)=P,\\quad V(\\hat P)=\\frac{P(1-P)}{n}';
     answer = `Mean ${v(p)} · SE ${v(se)}`;
     answerTex = `E(\\hat P)=${v(p)},\\quad SE=${v(se)}`;
+    concise = {
+      substitutionTex: `E(\\hat P)=${v(p)},\\quad SE=\\sqrt{\\frac{${v(p)}(1-${v(p)})}{${n}}}`,
+      interpretation: `The sample proportion has mean ${v(p)} and standard error ${v(se)}.`,
+      unit: 'Unitless proportion',
+    };
     steps = [
       step(
         'Identify the statistic',
@@ -375,6 +417,11 @@ export function calculate(method: Method, values: Values): Solution {
     formula = 'k=\\mu+\\sigma\\,\\varphi^{-1}(p)';
     answer = `k = ${v(k)}`;
     answerTex = `k=${v(mean)}+${v(sd)}\\times${texNumber(z)}=${v(k)}`;
+    concise = {
+      substitutionTex: `k=${v(mean)}+${v(sd)}\\,\\varphi^{-1}(${values.tail === 'right' ? `1-${v(prob)}` : v(prob)})`,
+      interpretation: `The bound has ${v(prob)} probability ${values.tail === 'right' ? 'above' : 'below'} it.`,
+      unit: 'Same units as the observations',
+    };
     steps = [
       step(
         'Convert to a cumulative probability',
@@ -567,6 +614,30 @@ export function calculate(method: Method, values: Values): Solution {
         ? `${v(a)}<${label}<${v(b)}`
         : `${label}${tail === 'left' ? '<' : '>'}${v(a)}`;
     answerTex = `P(${event})=${v(value)}`;
+    const cdfSymbol =
+      family === 'normal'
+        ? '\\Phi'
+        : family === 't'
+          ? `F_{t_{${df}}}`
+          : family === 'chi'
+            ? `F_{\\chi^2_{${df}}}`
+            : `F_{F_{${df},${df2}}}`;
+    const substituteBound = (x: number) =>
+      method === 'normal'
+        ? `\\frac{${v(x)}-${texNumber(center)}}{${v(scale)}}`
+        : method.startsWith('mean-')
+          ? `\\frac{${v(x)}-${texNumber(center)}}{${v(num(values, 'sd'))}/\\sqrt{${v(num(values, 'n'))}}}`
+          : method === 'proportion'
+            ? `\\frac{${v(x)}-${v(center)}}{\\sqrt{${v(center)}(1-${v(center)})/${v(num(values, 'n'))}}}`
+            : method === 'variance'
+              ? `\\frac{(${v(num(values, 'n'))}-1)${texNumber(x)}}{${v(num(values, 'variance'))}}`
+              : v(x);
+    const evalBound = (x: number) => `${cdfSymbol}\\left(${substituteBound(x)}\\right)`;
+    concise = {
+      substitutionTex: `P(${event})=${tail === 'left' ? evalBound(a) : tail === 'right' ? `1-${evalBound(a)}` : `${evalBound(b)}-${evalBound(a)}`}`,
+      interpretation: `${v(value * 100, 4)}% of modeled ${method.startsWith('mean-') ? 'sample means' : method === 'variance' ? 'sample variances' : method === 'proportion' ? 'sample proportions' : 'values'} fall in the requested region.`,
+      unit: 'Unitless probability',
+    };
     given += `, ${tail === 'between' ? `bounds=[${v(a)},${v(b)}]` : `bound=${v(a)}`}`;
     const stat = family === 'chi' ? '\\chi^2' : family === 'f' ? 'F' : family === 't' ? 'T' : 'Z';
     steps.unshift(
@@ -663,6 +734,8 @@ export function calculate(method: Method, values: Values): Solution {
   if (normalityMethods.includes(method) && values.normal === 'true')
     notes.push('Population normality was confirmed for this calculation.');
   return {
+    concise,
+    workingTables,
     title,
     given,
     formula,

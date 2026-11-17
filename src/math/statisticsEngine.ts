@@ -96,7 +96,19 @@ export function descriptiveData(data: number[]) {
   data.forEach(
     (x) => bins[Math.max(0, Math.min(binCount - 1, Math.floor((x - lo) / width)))].count++,
   );
-  return { n, mean, sum, ss, median: median(sorted), q1, q3, whiskerLow, whiskerHigh, bins };
+  return {
+    n,
+    mean,
+    sum,
+    ss,
+    sorted,
+    median: median(sorted),
+    q1,
+    q3,
+    whiskerLow,
+    whiskerHigh,
+    bins,
+  };
 }
 const normalCurve = (center = 0, scale = 1) => ({
   family: 'normal' as const,
@@ -183,6 +195,10 @@ export function solveStatistics(id: string, v: Values): StatisticalSolution {
   let curve: StatisticalSolution['curve'];
   let metrics: StatisticalSolution['metrics'] = [];
   const notes: string[] = [];
+  let substitutionTex = '',
+    quickInterpretation = '',
+    unit: string | undefined;
+  const workingTables: NonNullable<StatisticalSolution['workingTables']> = [];
   if (meta.category === 'descriptive') {
     const data = parseData(v.data ?? ''),
       s = descriptiveData(data),
@@ -202,6 +218,46 @@ export function solveStatistics(id: string, v: Values): StatisticalSolution {
           : id.endsWith('variance')
             ? variance
             : sd;
+    substitutionTex =
+      id === 'arithmetic-mean'
+        ? `\\bar x=\\frac{${data.length <= 8 ? data.map(t).join('+') : `\\sum_{i=1}^{${s.n}}x_i`}}{${s.n}}${data.length > 8 ? `=\\frac{${f(s.sum)}}{${s.n}}` : ''}`
+        : id === 'median'
+          ? `\\widetilde x=${s.n % 2 ? f(s.sorted[Math.floor(s.n / 2)]) : `\\frac{${t(s.sorted[s.n / 2 - 1])}+${t(s.sorted[s.n / 2])}}{2}`}`
+          : `${id.endsWith('-sd') ? '\\sqrt{' : ''}\\frac{${s.n <= 8 ? data.map((x) => `(${f(x)}-${t(s.mean)})^2`).join('+') : f(s.ss)}}{${sample ? `${s.n}-1` : s.n}}${id.endsWith('-sd') ? '}' : ''}`;
+    quickInterpretation =
+      id === 'arithmetic-mean'
+        ? `The ${s.n} observations have mean ${f(value)}.`
+        : id === 'median'
+          ? `The ordered data have median ${f(value)}.`
+          : `The ${sample ? 'sample' : 'population'} ${id.endsWith('variance') ? 'variance' : 'standard deviation'} is ${f(value)}.`;
+    unit = id.endsWith('variance')
+      ? 'Squared units of the observations'
+      : 'Same units as the observations';
+    workingTables.push(
+      id === 'median'
+        ? {
+            title: 'Ordered observations',
+            explanation:
+              'Sort every actual observation, retaining duplicates. Positions are one-based; the middle position or middle pair determines the median.',
+            headers: ['Ordered position', 'Observed value'],
+            rows: s.sorted.map((x, i) => [i + 1, x]),
+          }
+        : id === 'arithmetic-mean'
+          ? {
+              title: 'Observation total',
+              explanation:
+                'Sum the supplied observations, then divide that total by the number of observations. No unobserved values are introduced.',
+              headers: ['i', 'xᵢ'],
+              rows: [...data.map((x, i) => [i + 1, x]), ['Total', s.sum]],
+            }
+          : {
+              title: 'Observation-by-observation working',
+              explanation:
+                'The total of x is used for the mean. Variance and standard deviation use the sum of the squared deviations shown here, with n−1 for a sample and n for a population.',
+              headers: ['i', 'xᵢ', 'xᵢ − mean', '(xᵢ − mean)²'],
+              rows: data.map((x, i) => [i + 1, x, x - s.mean, (x - s.mean) ** 2]),
+            },
+    );
     answerTex = `${id === 'arithmetic-mean' ? '\\bar x' : id === 'median' ? '\\widetilde x' : id === 'sample-variance' ? 's^2' : id === 'population-variance' ? '\\sigma^2' : id === 'sample-sd' ? 's' : '\\sigma'}=${f(value)}`;
     given = `n=${s.n}; observations: ${data.map(f).join(', ')}`;
     steps = [
@@ -267,6 +323,7 @@ export function solveStatistics(id: string, v: Values): StatisticalSolution {
         : id === 'median'
           ? `Half the ordered observations lie on each side of the median ${f(value)}, allowing ties.`
           : `The ${sample ? 'sample' : 'population'} ${id.endsWith('variance') ? 'variance' : 'standard deviation'} is ${f(value)}${id.endsWith('variance') ? ' in squared data units' : ''}.`;
+    interpretation += ` The observed values range from ${f(s.sorted[0])} to ${f(s.sorted[s.n - 1])}; the median is ${f(s.median)} and the middle half is bounded by Q₁=${f(s.q1)} and Q₃=${f(s.q3)} under the stated quartile convention.`;
     plot = {
       kind: 'descriptive',
       data,
@@ -296,6 +353,7 @@ export function solveStatistics(id: string, v: Values): StatisticalSolution {
       value = m / n;
       given = `m=${m}, N=${n}`;
       answerTex = `P(A)=\\frac{${m}}{${n}}=${f(value)}`;
+      substitutionTex = `P(A)=\\frac{${m}}{${n}}`;
       steps = [
         step(
           'Count equally likely outcomes',
@@ -325,6 +383,10 @@ export function solveStatistics(id: string, v: Values): StatisticalSolution {
         id === 'event-union'
           ? `P(A\\cup B)=${f(a)}+${f(b)}-${f(joint)}=${f(value)}`
           : `P(A\\cap B)=${f(a)}\\times${f(b)}=${f(value)}`;
+      substitutionTex =
+        id === 'event-union'
+          ? `P(A\\cup B)=${f(a)}+${f(b)}-${f(joint)}`
+          : `P(A\\cap B)=${f(a)}\\times${f(b)}`;
       steps = [
         step(
           'Identify the event relationship',
@@ -356,6 +418,7 @@ export function solveStatistics(id: string, v: Values): StatisticalSolution {
       value = joint / b;
       given = `P(A∩B)=${f(joint)}, P(B)=${f(b)}`;
       answerTex = `P(A\\mid B)=\\frac{${f(joint)}}{${f(b)}}=${f(value)}`;
+      substitutionTex = `P(A\\mid B)=\\frac{${f(joint)}}{${f(b)}}`;
       steps = [
         step(
           'Restrict the sample space to B',
@@ -379,6 +442,7 @@ export function solveStatistics(id: string, v: Values): StatisticalSolution {
       value = joint + other;
       given = `P(A)=${f(a)}, P(B|A)=${f(ba)}, P(B|Aᶜ)=${f(bn)}`;
       answerTex = `P(B)=${f(joint)}+${f(other)}=${f(value)}`;
+      substitutionTex = `P(B)=${f(a)}\\times${f(ba)}+(1-${f(a)})\\times${f(bn)}`;
       steps = [
         step(
           'Multiply along the first branch',
@@ -412,6 +476,16 @@ export function solveStatistics(id: string, v: Values): StatisticalSolution {
       };
     }
     interpretation = `The requested probability is ${f(value)} (${format(value * 100, 4)}%).`;
+    quickInterpretation = `The requested event has probability ${format(value * 100, 4)}%.`;
+    unit = 'Unitless probability';
+    interpretation +=
+      id === 'conditional-probability'
+        ? ' This probability is relative to the conditioning event B rather than the whole sample space.'
+        : id === 'independent-events'
+          ? ' Multiplying the marginal probabilities is justified only under the supplied independence assumption.'
+          : id === 'probability-tree'
+            ? ' The two disjoint routes to B are added; the graph retains the actual branch probabilities.'
+            : ' The graph partitions the supplied probability model into the labeled event regions.';
   } else if (id === 'z-score') {
     const x = number(v, 'x'),
       mu = number(v, 'mu'),
@@ -419,6 +493,7 @@ export function solveStatistics(id: string, v: Values): StatisticalSolution {
     value = (x - mu) / sd;
     given = `x=${f(x)}, μ=${f(mu)}, σ=${f(sd)}`;
     answerTex = `z=\\frac{${f(x)}-${t(mu)}}{${f(sd)}}=${f(value)}`;
+    substitutionTex = `z=\\frac{${f(x)}-${t(mu)}}{${f(sd)}}`;
     steps = [
       step(
         'Center the observation',
@@ -428,6 +503,8 @@ export function solveStatistics(id: string, v: Values): StatisticalSolution {
       step('Scale by the standard deviation', 'Divide the centered observation by σ.', answerTex),
     ];
     interpretation = `The observation is ${f(Math.abs(value))} standard deviations ${value < 0 ? 'below' : 'above'} the mean.`;
+    quickInterpretation = value === 0 ? 'The observation equals the mean.' : interpretation;
+    unit = 'Standard deviations (dimensionless)';
     if (v.normal === 'true') {
       curve = { ...normalCurve(), upper: value };
       metrics = [
@@ -490,6 +567,11 @@ export function solveStatistics(id: string, v: Values): StatisticalSolution {
       event = `X${v.tail === 'exact' ? '=' : v.tail === 'left' ? '\\leq' : '\\geq'}${k}`;
     given = binomial ? `n=${n}, p=${f(p)}, k=${k}` : `λ=${f(lambda)}, k=${k}`;
     answerTex = `P(${event})=${f(value)}`;
+    const massTerm = (index: string, complement: string) =>
+      binomial
+        ? `\\binom{${n}}{${index}}${t(p)}^{${index}}(1-${f(p)})^{${complement}}`
+        : `e^{-${f(lambda)}}\\frac{${t(lambda)}^{${index}}}{${index}!}`;
+    substitutionTex = `P(${event})=${v.tail === 'exact' ? massTerm(String(k), String(n - k)) : `\\sum_{j=${v.tail === 'left' ? 0 : k}}^{${v.tail === 'left' ? k : binomial ? n : '\\infty'}}${massTerm('j', `${n}-j`)}`}`;
     steps = [
       step(
         'Identify the discrete model',
@@ -512,10 +594,17 @@ export function solveStatistics(id: string, v: Values): StatisticalSolution {
           : v.tail === 'left'
             ? 'Sum the masses from zero through k.'
             : 'Use the mass at exactly k.',
-        answerTex,
+        v.tail === 'exact'
+          ? answerTex
+          : v.tail === 'left'
+            ? `P(X\\leq${k})=\\sum_{j=0}^{${k}}P(X=j)=${f(cdf(k))}`
+            : `P(X\\geq${k})=1-P(X\\leq${k - 1})=1-${f(cdf(k - 1))}=${f(value)}`,
       ),
     ];
     interpretation = `Under the ${binomial ? 'binomial' : 'Poisson'} model, the event has probability ${f(value)} (${format(value * 100, 4)}%).`;
+    quickInterpretation = `The requested count event has probability ${format(value * 100, 4)}%.`;
+    unit = 'Unitless probability';
+    interpretation += ` The modeled count has mean ${f(mean)} and variance ${f(variance)}; the selected bars identify the ${v.tail === 'exact' ? 'single count' : v.tail === 'left' ? 'inclusive lower tail' : 'inclusive upper tail'}.`;
     plot = {
       kind: 'discrete',
       points,
@@ -533,6 +622,9 @@ export function solveStatistics(id: string, v: Values): StatisticalSolution {
     value = sd / Math.sqrt(n);
     given = `σ=${f(sd)}, n=${n}`;
     answerTex = `SE=\\frac{${f(sd)}}{\\sqrt{${n}}}=${f(value)}`;
+    substitutionTex = `SE=\\frac{${f(sd)}}{\\sqrt{${n}}}`;
+    quickInterpretation = `The sample mean has standard error ${f(value)}.`;
+    unit = 'Same units as the observations';
     steps = [
       step(
         'Find the square root of sample size',
@@ -593,6 +685,21 @@ export function solveStatistics(id: string, v: Values): StatisticalSolution {
         );
       df = observed.length - 1 - integer(v, 'estimated', 0, observed.length - 2);
       statistic = total(observed.map((o, i) => (o - expected[i]) ** 2 / expected[i]));
+      substitutionTex = `\\chi^2=${observed.length <= 8 ? observed.map((o, i) => `\\frac{(${o}-${t(expected[i])})^2}{${f(expected[i])}}`).join('+') : `\\sum_{i=1}^{${observed.length}}(O_i-E_i)^2/E_i=${f(statistic)}`}`;
+      workingTables.push({
+        title: 'Category contributions',
+        explanation:
+          'Every contribution uses the actual observed and expected counts; their sum is the chi-square statistic.',
+        headers: ['Category', 'Observed O', 'Expected E', 'O − E', '(O − E)²', '(O − E)² / E'],
+        rows: observed.map((o, i) => [
+          i + 1,
+          o,
+          expected[i],
+          o - expected[i],
+          (o - expected[i]) ** 2,
+          (o - expected[i]) ** 2 / expected[i],
+        ]),
+      });
       tail = 'right';
       given = `Observed: ${observed.join(', ')}; Expected: ${expected.join(', ')}; df=${df}; α=${f(alpha)}`;
       counts = { observed, expected };
@@ -616,7 +723,7 @@ export function solveStatistics(id: string, v: Values): StatisticalSolution {
       if (!['two', 'left', 'right'].includes(tail))
         throw new ValidationError('tail', 'Choose the alternative hypothesis.');
       const n = integer(v, 'n', id === 'proportion-test' ? 1 : 2);
-      let observed: number, nullValue: number, se: number;
+      let observed: number, nullValue: number, se: number, seTex: string, observedTex: string;
       if (id === 'proportion-test') {
         const x = integer(v, 'successes', 0, n),
           p0 = probability(v, 'p0', true);
@@ -628,6 +735,8 @@ export function solveStatistics(id: string, v: Values): StatisticalSolution {
         observed = x / n;
         nullValue = p0;
         se = Math.sqrt((p0 * (1 - p0)) / n);
+        seTex = `\\sqrt{${f(p0)}(1-${f(p0)})/${n}}`;
+        observedTex = `(${x}/${n})`;
         given = `x=${x}, n=${n}, p₀=${f(p0)}, α=${f(alpha)}`;
         steps.push(
           step(
@@ -651,6 +760,8 @@ export function solveStatistics(id: string, v: Values): StatisticalSolution {
             'Confirm approximate population normality for a small-sample mean test.',
           );
         se = sd / Math.sqrt(n);
+        seTex = `${f(sd)}/\\sqrt{${n}}`;
+        observedTex = f(observed);
         given = `x̄=${f(observed)}, μ₀=${f(nullValue)}, ${id === 't-test' ? 's' : 'σ'}=${f(sd)}, n=${n}, α=${f(alpha)}`;
         if (id === 't-test') df = n - 1;
         if (v.normal !== 'true')
@@ -659,6 +770,15 @@ export function solveStatistics(id: string, v: Values): StatisticalSolution {
           );
       }
       statistic = (observed - nullValue) / se;
+      if (id === 't-test')
+        steps.push(
+          step(
+            'Calculate t degrees of freedom',
+            'The estimated sample spread uses n−1 degrees of freedom.',
+            `df=${n}-1=${df}`,
+          ),
+        );
+      substitutionTex = `${id === 't-test' ? 't' : 'z'}=\\frac{${observedTex}-${t(nullValue)}}{${seTex}}`;
       const parameter = id === 'proportion-test' ? 'p' : '\\mu';
       steps.unshift(
         step(
@@ -671,7 +791,7 @@ export function solveStatistics(id: string, v: Values): StatisticalSolution {
         step(
           'Calculate the null-model standard error',
           'Use the spread appropriate to the selected test.',
-          `SE=${f(se)}`,
+          `SE=${seTex}=${f(se)}`,
         ),
         step(
           'Standardize the observed statistic',
@@ -710,6 +830,17 @@ export function solveStatistics(id: string, v: Values): StatisticalSolution {
       );
     title = 'Hypothesis test';
     answerTex = `p=${f(value)},\\quad ${reject ? '\\text{Reject }H_0' : '\\text{Fail to reject }H_0'}`;
+    const cdfName = chi ? `F_{\\chi^2_{${df}}}` : tTest ? `F_{t_{${df}}}` : '\\Phi';
+    substitutionTex += `,\\quad p=${tail === 'two' ? `2[1-${cdfName}(${f(Math.abs(statistic))})]` : tail === 'left' ? `${cdfName}(${f(statistic)})` : `1-${cdfName}(${f(statistic)})`}`;
+    quickInterpretation = `${reject ? 'Reject' : 'Fail to reject'} H₀ at α=${f(alpha)} for the selected alternative.`;
+    unit = 'Unitless p-value';
+    steps.push(
+      step(
+        'Evaluate the cumulative probability',
+        `Use the ${chi ? `chi-square distribution with ${df} degrees of freedom` : tTest ? `t distribution with ${df} degrees of freedom` : 'standard normal distribution'} under H₀. The CDF is evaluated numerically.`,
+        `${cdfName}(${f(tail === 'two' ? Math.abs(statistic) : statistic)})=${f(cdf(tail === 'two' ? Math.abs(statistic) : statistic))}`,
+      ),
+    );
     steps.push(
       step(
         'Evaluate the p-value',
@@ -724,6 +855,13 @@ export function solveStatistics(id: string, v: Values): StatisticalSolution {
         'Compare with the chosen significance level',
         'Reject H₀ when p≤α; otherwise the evidence is insufficient to reject it.',
         `p=${f(value)}${reject ? '\\leq' : '>'}\\alpha=${f(alpha)}`,
+      ),
+    );
+    steps.push(
+      step(
+        'Locate the critical region',
+        'Critical values use the same null distribution and significance level as the p-value decision; the graph marks these thresholds.',
+        `${tail === 'two' ? `c_L=${f(low)},\\quad c_U=${f(high)}` : tail === 'left' ? `c_L=${f(low)}` : `c_U=${f(high)}`}`,
       ),
     );
     interpretation = `${reject ? 'Reject' : 'Fail to reject'} H₀ at α=${f(alpha)}. ${reject ? 'The data provide evidence for the selected alternative under the stated model.' : 'The data do not provide sufficient evidence for the selected alternative; this does not prove H₀ true.'}`;
@@ -785,6 +923,47 @@ export function solveStatistics(id: string, v: Values): StatisticalSolution {
       intercept = my - slope * mx,
       r = yy > 0 ? Math.max(-1, Math.min(1, xy / Math.sqrt(xx * yy))) : undefined;
     value = id === 'correlation' ? r! : slope;
+    substitutionTex =
+      id === 'correlation'
+        ? `r=\\frac{${f(xy)}}{\\sqrt{${f(xx)}\\times${f(yy)}}}`
+        : `b_1=\\frac{${f(xy)}}{${f(xx)}},\\quad b_0=${f(my)}-${t(slope)}\\times${t(mx)}`;
+    quickInterpretation =
+      id === 'correlation'
+        ? `Pearson r=${f(value)} describes the observed linear association.`
+        : `Each one-unit increase in X changes fitted Y by ${f(slope)}.`;
+    unit =
+      id === 'correlation'
+        ? 'Dimensionless correlation'
+        : 'Slope: Y units per X unit; fitted values: Y units';
+    workingTables.push({
+      title: 'Paired calculations and residuals',
+      explanation:
+        'Preserve the supplied pairs. Sum the squared centered X and Y values and their cross-products to obtain Sxx, Syy and Sxy. Predictions and residuals use the fitted line from those same pairs.',
+      headers: [
+        'i',
+        'X',
+        'Y',
+        'X − mean X',
+        'Y − mean Y',
+        '(X − mean X)²',
+        '(Y − mean Y)²',
+        'Cross-product',
+        'Predicted Y',
+        'Residual',
+      ],
+      rows: xs.map((x, i) => [
+        i + 1,
+        x,
+        ys[i],
+        x - mx,
+        ys[i] - my,
+        (x - mx) ** 2,
+        (ys[i] - my) ** 2,
+        (x - mx) * (ys[i] - my),
+        intercept + slope * x,
+        ys[i] - (intercept + slope * x),
+      ]),
+    });
     given = `n=${n}; X: ${xs.join(', ')}; Y: ${ys.join(', ')}`;
     answerTex =
       id === 'correlation'
@@ -794,7 +973,7 @@ export function solveStatistics(id: string, v: Values): StatisticalSolution {
       step(
         'Calculate the paired means',
         'Keep the original pairing of each x and y value.',
-        `\\bar x=${f(mx)},\\quad\\bar y=${f(my)}`,
+        `\\bar x=\\frac{${f(total(xs))}}{${n}}=${f(mx)},\\quad\\bar y=\\frac{${f(total(ys))}}{${n}}=${f(my)}`,
       ),
       step(
         'Calculate centered sums of squares',
@@ -837,6 +1016,10 @@ export function solveStatistics(id: string, v: Values): StatisticalSolution {
       id === 'correlation'
         ? `Pearson r=${f(value)} summarizes the direction and strength of the observed linear association. Correlation does not imply causation.`
         : `For a one-unit increase in x, the fitted y changes by ${f(slope)}. Predictions describe this fitted sample relationship; extrapolation is not justified automatically.`;
+    interpretation +=
+      r === undefined
+        ? ' R² is undefined because Y is constant.'
+        : ` R²=${f(r * r)}: the fitted line accounts for ${format(r * r * 100, 4)}% of the observed variation in Y around its sample mean. The residuals are observed minus fitted Y values; this association does not establish causation.`;
     plot = {
       kind: 'scatter',
       points: xs.map((x, i) => ({
@@ -862,6 +1045,8 @@ export function solveStatistics(id: string, v: Values): StatisticalSolution {
   )
     throw new ValidationError('result', 'These values exceed the supported numerical range.');
   return {
+    concise: { substitutionTex, interpretation: quickInterpretation, unit },
+    workingTables,
     title,
     given,
     formula: meta.tex,

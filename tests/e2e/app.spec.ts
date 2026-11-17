@@ -2,6 +2,7 @@ import { test, expect, chromium } from '@playwright/test';
 import { readFile, writeFile } from 'node:fs/promises';
 import { statisticalFormulas } from '../../src/content/statistics';
 import { examples } from '../../src/content/examples';
+import statisticalReferences from '../statistical-reference.json' with { type: 'json' };
 const solve = (page: import('@playwright/test').Page) =>
   page.getByRole('button', { name: 'Solve problem', exact: true }).click();
 test('default workflow, exact navigation and project information', async ({ page }) => {
@@ -44,17 +45,20 @@ test('dynamic data, both modes, actual histogram and box plot, errors and reset'
   await page.getByLabel('Data set', { exact: true }).fill('2,4,4,4,5,5,7,9');
   await solve(page);
   await expect(page.locator('.result-answer')).toContainText('mean 5');
+  await page.getByRole('button', { name: 'Quick Solution', exact: true }).click();
+  await expect(page.locator('.visualization')).toHaveCount(0);
+  const answer = await page.locator('.result-answer').getAttribute('data-result-value');
+  await page.getByRole('button', { name: 'Detailed Step-by-Step', exact: true }).click();
+  expect(await page.locator('.result-answer').getAttribute('data-result-value')).toBe(answer);
   await expect(page.getByRole('img', { name: /Histogram of 8 observations/ })).toBeVisible();
   await expect(page.getByRole('img', { name: /Box plot/ })).toBeVisible();
-  const answer = await page.locator('.result-answer').innerText();
-  await page.getByRole('button', { name: 'Detailed Step-by-Step', exact: true }).click();
-  expect(await page.locator('.result-answer').innerText()).toBe(answer);
   for (const s of [
     'REQUIRED INFORMATION',
     'VARIABLES & PARAMETERS',
     'SELECTED METHOD',
     'SELECTED FORMULA',
-    'Assumptions and conclusions',
+    'Assumptions and conditions',
+    'WHY THIS METHOD',
   ])
     await expect(page.locator('.stat-result')).toContainText(s);
   await page.getByLabel('Data set', { exact: true }).fill('1,wrong,3');
@@ -63,20 +67,99 @@ test('dynamic data, both modes, actual histogram and box plot, errors and reset'
   await page.getByRole('button', { name: 'Reset', exact: true }).click();
   await expect(page.getByRole('alert')).toHaveCount(0);
 });
-test('all 40 formulas calculate, render mathematics, and generate graphs', async ({ page }) => {
+test('all 40 formulas preserve the same answer and inputs across distinct Quick and Detailed modes', async ({
+  page,
+}) => {
   test.setTimeout(90000);
   const errors: string[] = [];
   page.on('pageerror', (e) => errors.push(e.message));
   for (const formula of statisticalFormulas) {
     await page.goto('/#/solver?formula=' + formula.id);
+    await page.getByRole('button', { name: 'Quick Solution', exact: true }).click();
     await solve(page);
     await expect(page.locator('.result-answer'), formula.id).toBeVisible();
     await expect(page.getByRole('alert'), formula.id).toHaveCount(0);
+    const expected = statisticalReferences.find((row) => row.id === formula.id)!;
+    const numeric = await page.locator('.result-answer').getAttribute('data-result-value');
+    const answerTex = await page.locator('.result-answer').getAttribute('data-answer-tex');
+    expect(Number(numeric), formula.id).toBeCloseTo(expected.expected, 6);
+    await expect(page.locator('.quick-solution .direct-substitution .katex')).toHaveCount(1);
+    await expect(page.locator('.quick-solution p')).toHaveCount(2);
+    await expect(
+      page.locator(
+        '.stat-result .solution-steps, .stat-result .metric-row, .stat-result .visualization, .stat-result .solution-assumptions, .stat-result .source-answer',
+      ),
+    ).toHaveCount(0);
+    const inputs = await page
+      .locator('.stat-input input, .stat-input textarea, .stat-input select')
+      .evaluateAll((elements) =>
+        elements.map((e) => ({
+          value: (e as HTMLInputElement).value,
+          checked: (e as HTMLInputElement).checked,
+        })),
+      );
     await page.getByRole('button', { name: 'Detailed Step-by-Step', exact: true }).click();
+    await expect(page.locator('.result-answer')).toHaveAttribute('data-result-value', numeric!);
+    await expect(page.locator('.result-answer')).toHaveAttribute('data-answer-tex', answerTex!);
+    expect(await page.locator('.solution-steps > li').count(), formula.id).toBeGreaterThan(0);
+    await expect(page.locator('.method-rationale')).toContainText(formula.use);
+    await expect(page.getByLabel('Statistical formula', { exact: true })).toHaveValue(formula.id);
+    expect(
+      await page
+        .locator('.stat-input input, .stat-input textarea, .stat-input select')
+        .evaluateAll((elements) =>
+          elements.map((e) => ({
+            value: (e as HTMLInputElement).value,
+            checked: (e as HTMLInputElement).checked,
+          })),
+        ),
+    ).toEqual(inputs);
     await expect(page.locator('.visualization svg'), formula.id).not.toHaveCount(0);
     await expect(page.locator('main'), formula.id).not.toContainText('could not be rendered');
+    await page.getByRole('button', { name: 'Quick Solution', exact: true }).click();
+    await expect(page.locator('.result-answer')).toHaveAttribute('data-result-value', numeric!);
+    await expect(page.locator('.result-answer')).toHaveAttribute('data-answer-tex', answerTex!);
   }
   expect(errors).toEqual([]);
+});
+
+test('custom sample variance keeps its data and answer through mode changes and concise PDF export', async ({
+  page,
+}, info) => {
+  await page.goto('/#/solver?formula=sample-variance');
+  await page.getByLabel('Data set', { exact: true }).fill('1,2,9');
+  await page.getByRole('button', { name: 'Quick Solution', exact: true }).click();
+  await solve(page);
+  await expect(page.locator('.result-answer')).toHaveAttribute('data-result-value', '19');
+  await expect(page.locator('.direct-substitution annotation')).toContainText(
+    '(1-4)^2+(2-4)^2+(9-4)^2',
+  );
+  await page.locator('.stat-result').screenshot({ path: info.outputPath('quick-variance.png') });
+  await page.getByRole('button', { name: 'Detailed Step-by-Step', exact: true }).click();
+  await expect(page.locator('.result-answer')).toHaveAttribute('data-result-value', '19');
+  await expect(page.locator('.calculation-table tbody tr')).toHaveCount(3);
+  await expect(page.locator('.calculation-table tbody tr').nth(2)).toHaveText('39525');
+  await expect(page.locator('.visualization svg')).toHaveCount(2);
+  await page.locator('.stat-result').screenshot({ path: info.outputPath('detailed-variance.png') });
+  await page.getByRole('button', { name: 'Quick Solution', exact: true }).click();
+  await expect(page.getByLabel('Data set', { exact: true })).toHaveValue('1,2,9');
+  await expect(page.getByLabel('Statistical formula', { exact: true })).toHaveValue(
+    'sample-variance',
+  );
+  await expect(page.locator('.visualization, .calculation-table, .solution-steps')).toHaveCount(0);
+  await page.evaluate(() => {
+    window.print = () => {
+      document.body.dataset.printRequested = 'true';
+    };
+  });
+  await page.getByRole('button', { name: 'Export solution as PDF', exact: true }).click();
+  await expect(page.locator('body')).toHaveAttribute('data-print-requested', 'true');
+  await page.emulateMedia({ media: 'print' });
+  await page.pdf({
+    path: info.outputPath('quick-variance.pdf'),
+    format: 'A4',
+    printBackground: true,
+  });
 });
 test('preserved examples and formulas keep search, filters, content and working links', async ({
   page,
@@ -91,6 +174,7 @@ test('preserved examples and formulas keep search, filters, content and working 
     .getByRole('link', { name: 'Work through Clinic waiting times part b', exact: true })
     .click();
   await expect(page.locator('.result-answer')).toContainText('69.1462');
+  await page.getByRole('button', { name: 'Detailed Step-by-Step', exact: true }).click();
   await expect(page.locator('.source-answer')).toContainText('0.5987');
   await page.goto('/#/formulas');
   await expect(page.locator('.formula-library article')).toHaveCount(49);
@@ -111,6 +195,7 @@ test('all 47 original examples and illustrations remain available', async ({ pag
     await expect(page.locator('.problem-panel')).toContainText(e.question);
     if (e.method) {
       await expect(page.locator('.result-answer'), e.id).toBeVisible();
+      await page.getByRole('button', { name: 'Detailed Step-by-Step', exact: true }).click();
       await expect(page.locator('.source-answer'), e.id).toContainText(e.sourceAnswer);
     } else {
       await expect(page.locator('.problem-panel')).toContainText('Preserved source illustration');
@@ -161,6 +246,7 @@ test('installability and offline statistical solving, libraries and source citat
     await context.setOffline(true);
     await page.goto('/#/solver?formula=regression');
     await solve(page);
+    await page.getByRole('button', { name: 'Detailed Step-by-Step', exact: true }).click();
     await expect(page.getByRole('img', { name: /Observed X,Y pairs/ })).toBeVisible();
     await page.reload();
     await solve(page);

@@ -65,6 +65,17 @@ export interface Curve {
   domain?: [number, number];
 }
 export interface Solution {
+  concise: {
+    substitutionTex: string;
+    interpretation: string;
+    unit?: string;
+  };
+  workingTables?: {
+    title: string;
+    explanation: string;
+    headers: string[];
+    rows: (number | string)[][];
+  }[];
   title: string;
   given: string;
   formula: string;
