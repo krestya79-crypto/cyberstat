@@ -11,9 +11,9 @@ The three main navigation sections are **Statistical Solver**, **Worked Examples
 ## Project information
 
 - Student Name: **Ahmed Waleed Reda Gad**
-- University Name: **Horus University**
-- Doctor Name: **Dr. Mohamed Ibrahim Sobh**
-- Subject Name: **Advanced Probability and Statistics**
+- University: **Horus University**
+- Supervised By: **Dr. Mohamed Ibrahim Sobh**
+- Subject: **Advanced Probability and Statistics**
 
 ## Statistical functionality
 

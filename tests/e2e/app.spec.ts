@@ -18,6 +18,12 @@ test('default workflow, exact navigation and project information', async ({ page
     'Advanced Probability and Statistics',
   ])
     await expect(page.locator('.project-information')).toContainText(s);
+  await expect(page.locator('.project-information dt')).toHaveText([
+    'Student Name',
+    'University',
+    'Supervised By',
+    'Subject',
+  ]);
   for (const s of [
     'SELECT STATISTICAL METHOD',
     'SELECT THE FORMULA',

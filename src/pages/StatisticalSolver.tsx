@@ -336,7 +336,7 @@ export function StatisticalSolver({
           </p>
         </form>
         <section
-          className="result-panel stat-result"
+          className={`result-panel stat-result stat-result-${mode}`}
           aria-label="Statistical solution"
           aria-live="polite"
         >
@@ -344,7 +344,7 @@ export function StatisticalSolver({
             <span>04</span>
             <div>
               <span className="eyebrow">SOLVE THE PROBLEM</span>
-              <h2>Your mathematical solution.</h2>
+              <h2>{mode === 'quick' ? 'Your result.' : 'Your mathematical solution.'}</h2>
             </div>
           </div>
           <div className="solution-toggle" role="group" aria-label="Solution presentation">

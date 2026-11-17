@@ -17,11 +17,11 @@ function ProjectInformation() {
       <dl>
         <dt>Student Name</dt>
         <dd>{project.student}</dd>
-        <dt>University Name</dt>
+        <dt>University</dt>
         <dd>{project.university}</dd>
-        <dt>Doctor Name</dt>
+        <dt>Supervised By</dt>
         <dd>{project.doctor}</dd>
-        <dt>Subject Name</dt>
+        <dt>Subject</dt>
         <dd>{project.subject}</dd>
       </dl>
     </>

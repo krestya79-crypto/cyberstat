@@ -190,6 +190,59 @@
 .stat-result .solution-steps .math-block {
   font-size: 13px;
 }
+@media screen {
+  .stat-result {
+    align-self: start;
+    min-height: 0;
+    height: auto;
+    max-height: none;
+  }
+  .stat-result.stat-result-quick {
+    padding: 14px;
+  }
+  .stat-result-quick > .stat-step-title,
+  .stat-result-quick > .solution-toggle {
+    margin-bottom: 12px;
+  }
+  .stat-result-quick .quick-solution .solution-given p {
+    margin: 4px 0 8px;
+  }
+  .stat-result-quick .quick-formula,
+  .stat-result-quick .direct-substitution {
+    padding: 7px 0;
+  }
+  .stat-result-quick .quick-solution .math-block {
+    margin: 6px 0;
+    padding: 2px 0;
+  }
+  .stat-result-quick .katex-display {
+    margin: 0.35em 0;
+  }
+  .stat-result-quick .result-answer {
+    padding: 10px 12px;
+    margin-top: 8px;
+  }
+  .stat-result-quick .answer-unit {
+    margin-top: 5px;
+  }
+  .stat-result-quick .result-interpretation {
+    margin: 5px 0 0;
+  }
+  .stat-result-quick .export-actions {
+    margin-top: 12px;
+    padding-top: 12px;
+    gap: 5px;
+  }
+  .stat-result-quick .empty-result {
+    padding: 20px 12px;
+  }
+  .stat-result.stat-result-detailed {
+    padding: clamp(16px, 2vw, 24px);
+  }
+  .stat-result-detailed .result-answer {
+    padding: 20px;
+  }
+}
 .solution-assumptions {
   margin-top: 22px;
   padding: 18px;
