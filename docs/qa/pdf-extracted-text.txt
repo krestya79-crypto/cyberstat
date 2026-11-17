@@ -1,0 +1,94 @@
+CyberStat
+Probability & Statistics · Ahmed Waleed Gad
+Mean interval · small sample t · Lecture 4, pp. 5–7, 11–12
+L E C T U R E 4
+/
+PA G E S 5 – 7 , 1 1 – 1 2
+Mean interval · small sample t
+For unknown population variance, a small sample and an approximately normal population, use the Student t
+critical value with n−1 degrees of freedom.
+F R O M T H E L E C T U R E
+Lecture 4 · p. 11
+Cotton thread strength
+A sample of 12 measurement of the breaking strength of cotton threads gave a mean of 7.38 and
+standard deviation of 1.24. find 95% confidence interval for the average limit for the actual strength.
+9 5 % c o n f i d e n c e i n t e r v a l
+Using this method repeatedly, approximately 95% of the intervals would contain the fixed population mean
+μ. This sample gives (6.592142, 8.167858).
+Critical value
+2.200985
+Standard error
+0.357957
+Half-width
+0.787858
+Interval width
+1.575717
+GIVE N
+x̄=7.38, s=1.24, n=12, confidence=95%
+SYM B O L S & VA RIA B L E S
+tα/2,n−1: positive t critical with upper-tail area α/2 · s: sample SD
+F O RM U L A
+6.592142 < μ < 8.167858
+±
+Xˉ
+t
+​
+​
+α/2,n−1
+​n
+s
+01
+Choose the method
+Unknown σ, n<30 and an approximately normal population require a t interval with n−1 degrees of freedom.
+02
+Split the noncoverage between the tails
+Convert the confidence percentage to a proportion and divide α equally.
+03
+Find the critical value
+Use df=11 and an upper-tail area of 0.025.
+04
+Calculate the sampling standard error
+Divide the standard deviation by the square root of the sample size.
+05
+Calculate the confidence half-width
+Multiply the critical value by the standard error.
+06
+Subtract and add the half-width
+The two endpoints are the lower and upper confidence limits.
+±
+Xˉ
+t
+​
+​
+α/2,n−1
+​n
+s
+α = 1 −0.95 = 0.05,
+α/2 = 0.025
+t
+​ =
+α/2,n−1
+2.200985
+SE =
+​ =
+​
+12
+1.24
+0.357957
+e = 2.200985 × 0.357957 = 0.787858
+LCL = 7.38 −0.787858 = 6.592142,
+UCL = 7.38 + 0.787858 = 8.167858
+R E A D T H E I N T E R VA L
+6.5921
+Lower limit
+8.1679
+Upper limit
+Center 7.38
+Parameter value
+Blue segment: interval limits. Sage point: interval midpoint.
+Source review note
+Source states: t=2.431; 6.51 < μ < 8.25
+For 95% and df=11 the critical t is 2.200985, not 2.431. The small-sample method additionally assumes approximately
+normal thread strengths.
+Lecture 4 · p. 11
+CyberStat · Developed by Ahmed Waleed Gad · Under the Supervision of Dr. Mohamed Ibrahim · Horus University – Egypt

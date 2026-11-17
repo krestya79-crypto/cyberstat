@@ -1,0 +1,393 @@
+
+=== LECTURE 2 / PDF PAGE 1 ===
+    Lecture 2
+
+       By
+ Dr/ Mohamed E. Sobh
+/Sobh                                                              1
+
+=== LECTURE 2 / PDF PAGE 2 ===
+               Chapter (2)
+    Student distribution (T-distribution)
+
+❑The T-distribution (or Student's t-distribution) is a continuous probability distribution
+
+similar to the normal distribution but with heavier tails, used for estimating population
+
+parameters when:
+   The sample size is small (typically 𝒏< 𝟑𝟎).
+   The population standard deviation is unknown.
+   The data are approximately normally distributed.
+
+❑The T- distribution shares some characteristics of the normal distribution and differs from
+
+it in others. The T- distribution is similar to the standard normal distribution in these ways:
+
+1) The support of T- distribution is from −∞ to ∞.
+
+2) It is bell-shaped.
+
+3) It is symmetric about the mean.
+
+4) The mean, median, and mode are equal to 0 and are located at the center of the distribution.
+
+ 5) The curve never touches the x axis.
+
+ 6) T- distribution distributions are denser in the center and less dense in the tails.
+
+
+                                                                                                                   2
+
+=== LECTURE 2 / PDF PAGE 3 ===
+❑ The T- distribution differs from the standard normal distribution in the following ways:
+
+
+1) The variance is greater than 1.
+
+2) The t distribution is actually a family of curves based on the concept of degrees of
+
+freedom, which is related to sample size.
+
+3) As the sample size increases, the t distribution approaches the standard normal
+
+distribution.
+
+❑ Remark:
+
+The degrees of freedom are the number of values that are free to vary after a sample statistic
+
+has been computed.
+
+
+
+
+
+                                                                                                                         3
+
+=== LECTURE 2 / PDF PAGE 4 ===
+T-Distribution Table:
+
+
+
+
+
+                                                                                                        4
+
+=== LECTURE 2 / PDF PAGE 5 ===
+Example:
+If you have sample of 19 patient find 𝑷(𝑻> 𝟐. 𝟏𝟎𝟏).
+                                  Solution
+                     𝒏= 𝟏𝟗
+The degree of freedom= 𝒏−𝟏= 𝟏𝟗−𝟏= 𝟏𝟖.
+
+
+Example:
+Find 𝑷(𝑻> 𝟏. 𝟓𝟎) with 𝒅𝒇 = 𝟏𝟖
+                                  Solution
+From the T-table, we have
+                                𝟎. 𝟎𝟓< 𝑷𝑻> 𝟏. 𝟓𝟎< 𝟎. 𝟏𝟎
+
+
+
+
+
+                                                                                                                   5
+
+=== LECTURE 2 / PDF PAGE 6 ===
+  Chi-square distribution (𝝌𝟐-distribution)
+
+ The Chi-square distribution (𝝌𝟐) is a continuous probability distribution defined as the
+  sum of the squares of independent, standard normal random variables (𝒁𝒊).
+
+                   𝝌𝟐= 𝒁𝟏 𝟐+ 𝒁𝟐 𝟐+ ⋯+ 𝒁𝒌 𝟐.
+Where 𝒌 𝐢𝐬 𝐭𝐡𝐞 degrees of freedom for 𝝌𝟐-distribution.
+  It is always non-negative (𝟎 to ∞ ) and right-skewed. As degrees of freedom increase, the
+   curve becomes more symmetrical and approaches a normal distribution.
+ The mean is equal to the degrees of freedom (𝒌), and the variance is (𝟐𝒌).
+
+
+
+
+
+                                                                                                       6
+
+=== LECTURE 2 / PDF PAGE 7 ===
+𝝌𝟐-Distribution Table:
+
+
+
+
+
+                                                                                                                 7
+
+=== LECTURE 2 / PDF PAGE 8 ===
+               F- distribution
+
+  The F-distribution (also known as the Fisher-Snedecor distribution) is a continuous
+   probability distribution that primarily describes the ratio of two independent chi-square
+  random variables, each divided by its respective degrees of freedom.
+  If 𝑼𝟏 and 𝑼𝟐 are independent random variables following chi-square distributions with 𝒅𝟏
+  and 𝒅𝟐 degrees of freedom respectively, the random variable is defined as:
+                                 𝑼𝟏𝒅𝟏
+                        𝑭=
+                                 𝑼𝟐𝒅𝟐
+This resulting variable follows an F-distribution denoted as 𝑭(𝒅𝟏, 𝒅𝟐).
+  Since it is a ratio of variances (or chi-square variables), the F-value is always greater than or
+   equal to zero.
+  It is always non-negative (𝟎 to ∞ ) and right-skewed (positively skewed). As the degrees of
+   freedom increase, the distribution becomes more symmetrical and eventually approximates
+   a normal distribution.
+                                                        𝒅𝟐                           𝟐𝒅𝟐 𝟐(𝒅𝟏+𝒅𝟐−𝟐)
+  The mean is equal to the degrees of freedom 𝒅𝟐−𝟐, and the variance is  𝒅𝟏𝒅𝟐−𝟐𝟐(𝒅𝟐−𝟒)  .
+
+
+
+
+
+                                                                                                    8
+
+=== LECTURE 2 / PDF PAGE 9 ===
+9
+
+=== LECTURE 2 / PDF PAGE 10 ===
+          Sampling distribution
+❑Population:  It is a large group of people or element which we are interest.
+❑ Sample:  It is a subset of population.
+
+❑ Statistics: Is a random variable calculated from the sample.
+
+❑ Parameter: Is a random variable calculated from the population.
+
+❑ Sampling distribution: Is the probability distribution of any statistics.
+❑ Remark:
+
+            Population symbols               Sample symbols
+
+  𝑵→ population size          𝒏→ sample size
+
+   𝝁→ population mean               𝒙 → sample mean
+
+   𝝈𝟐→ population variance          𝒔𝟐→ sample variance
+
+   𝝈→ population standard deviation   𝒔→ sample standard deviation
+
+
+
+
+
+                                                                                                                                  10
+
+=== LECTURE 2 / PDF PAGE 11 ===
+   Sampling distribution of the mean (𝑿)
+
+Let 𝑿𝟏, 𝑿𝟐, … , 𝑿𝒏 is a random sample od size 𝒏 taken from population with mean
+  𝝁 and variance 𝝈𝟐 then:
+                                                          𝝈𝟐
+     𝑬𝑿 = 𝝁𝒙 = 𝝁        𝒂𝒏𝒅        𝑽𝑿 = 𝝈𝟐𝒙 =
+                                                 𝒏
+
+❑ Remark: We note that the quantity:
+                               𝝈
+                                 𝛔𝒙 =
+                               𝒏
+is called the standard error and we note that :
+
+As sample size increases, the standard error decrease and thus the variability of
+  sample means decreases.
+
+
+
+
+
+                                                                                                                                                                                 11
+
+=== LECTURE 2 / PDF PAGE 12 ===
+Theorem:
+
+ Let 𝑿𝟏, 𝑿𝟐, … , 𝑿𝒏 is a random sample of size 𝒏 taken from normal population with
+ mean 𝝁 and variance 𝝈𝟐 then the sampling distribution of 𝑿 will be normal with
+                                          𝝈𝟐
+ mean 𝝁𝒙 = 𝝁 and variance 𝝈𝟐𝒙 =    i.e.                                     𝒏
+                        𝑿 −𝝁
+                 𝒁=      ~𝑵(𝟎, 𝟏)                           𝝈
+                           𝒏
+Central limit theorem:
+
+ Let 𝑿𝟏, 𝑿𝟐, … , 𝑿𝒏 is a random sample of large enough size 𝒏 taken from population
+ with mean 𝝁 and variance 𝝈𝟐 then the sampling distribution of 𝑿 will be
+                                                                            𝝈𝟐
+ approximately normal with mean 𝝁𝒙 = 𝝁 and variance 𝝈𝟐𝒙 =    i.e.                                                                  𝒏
+                        𝑿 −𝝁
+                 𝒁=      ~𝑵(𝟎, 𝟏)                           𝝈
+                           𝒏
+
+
+
+
+                                                                                                                                            12
+
+=== LECTURE 2 / PDF PAGE 13 ===
+Very Important Remark:
+
+ Let 𝑿𝟏, 𝑿𝟐, … , 𝑿𝒏 is a random sample of size 𝒏 taken from population with mean
+   𝝁 and variance 𝝈𝟐(Known), then
+                         𝑿 −𝝁
+                   𝒁=      ~𝑵(𝟎, 𝟏)                             𝝈
+                             𝒏
+ If the population is normally distributed or the sample size 𝒏≥𝟑𝟎.
+
+ Let 𝑿𝟏, 𝑿𝟐, … , 𝑿𝒏 is a random sample of size 𝒏 taken from population with mean
+   𝝁 and variance 𝝈𝟐(Unknown), then
+                         𝑿 −𝝁
+                   𝒁=      ~𝑵(𝟎, 𝟏)                                     𝒔
+                             𝒏
+ If the sample size 𝒏≥𝟑𝟎.
+
+ Let 𝑿𝟏, 𝑿𝟐, … , 𝑿𝒏 is a random sample of size 𝒏 taken from population with mean
+   𝝁 and variance 𝝈𝟐(Unknown), then
+                          𝑿 −𝝁
+                   𝑻=       ~𝑻(𝒏−𝟏)                                     𝒔
+                             𝒏
+ If the population is approximately normal distributed and the sample size 𝒏< 𝟑𝟎.
+                                                                                                                                                   13
+
+=== LECTURE 2 / PDF PAGE 14 ===
+Example:
+A sample of size 16 is drawn from a normal population with mean 200 and variance
+36. Find the probability that the sample mean will be less than 199.
+                                  Solution
+
+         𝒏= 𝟏𝟔,     𝝁= 𝟐𝟎𝟎,    𝝈𝟐= 𝟑𝟔,    𝝈= 𝟔
+
+
+                         𝑿 −𝝁
+                  𝒁=      ~𝑵(𝟎, 𝟏)                            𝝈
+                            𝒏
+
+
+
+                     𝑿 −𝝁  𝟏𝟗𝟗−𝟐𝟎𝟎
+           𝑷(𝑿 ≤𝟏𝟗𝟗) = 𝑷     <        = 𝑷(𝒁≤−𝟎. 𝟔𝟕)                         𝝈                                   𝟔
+                         𝒏                                   𝟏𝟔
+
+          = 𝝋−𝟎. 𝟔𝟕= 𝟏−𝝋𝟎. 𝟔𝟕= 𝟏−𝟎. 𝟕𝟒𝟖𝟔= 𝟎. 𝟐𝟓𝟏
+
+
+
+
+
+                                                                                                                                  14
+
+=== LECTURE 2 / PDF PAGE 15 ===
+Example:
+An electric firm manufactures light bulb that have a length of life that
+approximately normally distributed with mean equal to 800 hours and standard
+deviation of 40 hours. Find the probability that a random sample of 16 bulbs will
+have an average life of less than 775 hours.
+                                  Solution
+
+         𝝁= 𝟖𝟎𝟎,       𝝈= 𝟒𝟎,         𝒏= 𝟏𝟔
+
+                         𝑿 −𝝁
+                  𝒁=      ~𝑵(𝟎, 𝟏)                            𝝈
+                            𝒏
+
+
+
+                      𝑿 −𝝁  𝟕𝟕𝟓−𝟖𝟎𝟎
+           𝑷(𝑿 ≤𝟕𝟕𝟓) = 𝑷     <        = 𝑷(𝒁≤−𝟐. 𝟓)                         𝝈                                   𝟒𝟎
+                         𝒏                                   𝟏𝟔
+
+           = 𝝋−𝟐. 𝟓= 𝟏−𝝋𝟐. 𝟓= 𝟏−𝟎. 𝟗𝟗𝟑𝟖= 𝟎. 𝟎𝟎𝟔
+
+
+
+                                                                                                                                              15
+
+=== LECTURE 2 / PDF PAGE 16 ===
+Example:
+A sample of size 64 is drawn from a population with mean 3.2 and standard deviation 1.6.
+find the probability that the sample mean will be :
+     a) More than 3.5 .
+    b) Less than 2.7 .
+                                      Solution
+
+                  𝒏= 𝟔𝟒,     𝝁= 𝟑. 𝟐,     𝝈= 𝟏. 𝟔
+
+                                𝑿 −𝝁
+                        𝒁=      ~𝑵(𝟎, 𝟏)                                    𝝈
+                                    𝒏
+
+
+
+
+                     𝑿−𝝁    𝟑.𝟓−𝟑.𝟐𝟎
+   a)𝑷𝑿 > 𝟑. 𝟓= 𝑷    𝝈 >     𝟏.𝟔   = 𝑷𝒁> 𝟏. 𝟓= 𝟏−𝝋𝟏. 𝟓= 𝟏−𝟎. 𝟗𝟑𝟑𝟐= 𝟎. 𝟎𝟔𝟔𝟖
+                             𝒏         𝟔𝟒
+
+
+
+
+                     𝑿 −𝝁    𝟐.𝟕−𝟑.𝟐𝟎
+    b) 𝑿 < 𝟐. 𝟕= 𝑷    𝝈 <     𝟏.𝟔   = 𝑷𝒁< −𝟐. 𝟓= 𝝋−𝟐. 𝟓= 𝟏−𝝋𝟐. 𝟓= 𝟏−𝟎. 𝟗𝟗𝟑𝟖= 𝟎. 𝟎𝟎𝟔𝟐
+                             𝒏         𝟔𝟒
+
+
+
+
+
+                                                                                                                                16
+
+=== LECTURE 2 / PDF PAGE 17 ===
+Example:
+A sample of size 64 has standard deviation 5 drawn from population with mean 3.2. Find the probability that
+the sample mean will be:
+     a) More than 2.2 .
+    b) Less than 1.7 .
+                                    Solution
+
+               𝒏= 𝟔𝟒,     𝝁= 𝟑. 𝟐,    𝒔= 𝟓
+
+                          𝑿 −𝝁
+                   𝒁=      ~𝑵(𝟎, 𝟏)                                      𝒔
+                              𝒏
+
+                    𝑿 −𝝁    𝟐.𝟐−𝟑.𝟐
+  a)𝑷𝑿 > 𝟐. 𝟐= 𝑷     𝒔 >    𝟓   = 𝑷𝒁> −𝟏. 𝟔= 𝟏−𝝋−𝟏. 𝟔= 𝟏−𝟏−𝝋𝟏. 𝟔  =
+                            𝒏                                       𝟔𝟒
+                  𝟏−𝟏−𝟎. 𝟗𝟒𝟓𝟐= 𝟎. 𝟗𝟒𝟓𝟐.
+
+
+
+
+
+                    𝑿 −𝝁    𝟏.𝟕−𝟑.𝟐
+  b) 𝑿 < 𝟏. 𝟕= 𝑷     𝒔 <    𝟓   = 𝑷𝒁< −𝟐. 𝟒= 𝝋−𝟐. 𝟒= 𝟏−𝝋𝟐. 𝟒= 𝟏−𝟎. 𝟗𝟗𝟏𝟖= 𝟎. 𝟎𝟎𝟖𝟐
+                           𝒏        𝟔𝟒
+
+
+
+
+                                                                                                                                            17
+
+=== LECTURE 2 / PDF PAGE 18 ===
+Example:
+Certain Tubes manufactured by a company have a mean lifetime of 800 hours and
+standard deviation of 40 hours. Find the probability that a random sample of 16
+tubes taken from the group will have mean lifetime :
+   a)More than 815 hours .
+    b) Between 790 and 810 hours .
+
+
+                                  Solution
+
+                            ............بنفسك حل
+
+
+
+
+
+                                                                                                                                  18
+
+=== LECTURE 2 / PDF PAGE 19 ===
+19

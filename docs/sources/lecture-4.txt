@@ -1,0 +1,350 @@
+
+=== LECTURE 4 / PDF PAGE 1 ===
+    Lecture 4
+
+       By
+ Dr/ Mohamed E. Sobh
+/Sobh                                                              1
+
+=== LECTURE 4 / PDF PAGE 2 ===
+            Estimation methods
+
+There are two methods of estimations:
+Point estimation:
+   A point estimator is an statistic (a function of the random sample). In this method we
+estimate the unknown parameter using single value.
+    Example:
+      𝝁 = 𝟏𝟐𝟎.
+
+      𝝈𝟐 = 𝟏𝟔.
+
+
+  Interval estimation:
+   A confidence interval estimator of a population parameter is a rule for determining
+(based on the sample) an interval that is likely to include the parameter.
+    Example:
+      𝟖𝟎< 𝝁 < 𝟏𝟐𝟎.
+
+     𝟏𝟎< 𝝈𝟐 < 𝟏𝟔.
+
+
+
+
+
+                                                                                                                   2
+
+=== LECTURE 4 / PDF PAGE 3 ===
+               Confidence Level
+
+Suppose the confidence interval of 𝜽 takes the form [𝑨, 𝑩], where 𝑨
+  and 𝑩 are random variables, i.e., [𝑨, 𝑩] is a random interval. If
+                 𝑷 𝑨< 𝜽< 𝑩= 𝟏− 𝜶,
+then 𝟏𝟎𝟎 (𝟏 − 𝜶) % is called the confidence level of the confidence
+interval.
+
+
+
+𝑨 is the lower confidence limit (LCL) of the confidence interval, 𝑩 is
+  the upper confidence limit (UCL) of the confidence interval, and
+ 𝑩− 𝑨 is the width of the confidence interval
+
+
+
+
+
+                                                                                                                       3
+
+=== LECTURE 4 / PDF PAGE 4 ===
+   Interval estimation form the population mean (𝝁)
+•  Let 𝑿𝟏, 𝑿𝟐, … , 𝑿𝒏 is a random sample of size 𝒏 taken from population
+  with mean 𝝁 and variance 𝝈𝟐(Known), then
+                     𝑿 −𝝁
+               𝒁=      ~𝑵(𝟎, 𝟏)                        𝝈
+                        𝒏
+We note that :
+                𝑃−𝑧𝛼 < 𝑍< 𝑧𝛼 = 1 −𝛼
+                                 2         2
+Which implies
+
+
+                      𝑿 −𝝁
+                𝑃  −𝑧𝛼 <    < 𝑧𝛼 = 1 −𝛼                         𝝈
+                              2              2
+                         𝒏
+                    𝝈           𝝈
+           𝑃−𝑧𝛼                           2 𝒏< 𝑿 −𝝁< 𝑧𝛼2 𝒏 = 1 −𝛼
+
+                    𝝈              𝝈
+        𝑃−𝑿 −𝑧𝛼                            2 𝒏< −𝝁< −𝑿 + 𝑧𝛼2 𝒏 = 1 −𝛼
+                     𝝈           𝝈
+        𝑃𝑿 + 𝑧𝛼   𝝁> 𝑿 −𝑧𝛼   = 1 −𝛼                                                                                                     4                            2 𝒏>           2 𝒏
+
+=== LECTURE 4 / PDF PAGE 5 ===
+Which implies finally that 𝟏−𝜶𝟏𝟎𝟎% confidence interval for the population mean is
+given in the form
+                             𝝈           𝝈
+                      𝑿 −𝑧𝛼   𝝁< 𝑿 + 𝑧𝛼                                          2 𝒏<           2 𝒏
+when 𝝈𝟐(Known) and the population is normally distributed or 𝝈𝟐(Known) and the
+sample size 𝒏≥𝟑𝟎.
+Assignment:
+Deduce the law of confidence interval for the population mean when:
+The population variance 𝝈𝟐(Unknown) and sample size 𝒏≥𝟑𝟎.
+
+The population variance 𝝈𝟐(Unknown), population is approximately normal
+   distributed and the sample size 𝒏< 𝟑𝟎.
+
+
+
+
+
+                                                                                                                  5
+
+=== LECTURE 4 / PDF PAGE 6 ===
+Very Important Remark:
+
+ Let 𝑿𝟏, 𝑿𝟐, … , 𝑿𝒏 is a random sample of size 𝒏 taken from population with mean
+   𝝁 and variance 𝝈𝟐(Known), then
+                           𝝈           𝝈
+                    𝑿 −𝑧𝛼   𝝁< 𝑿 + 𝑧𝛼                                      2 𝒏<           2 𝒏
+ If the population is normally distributed or the sample size 𝒏≥𝟑𝟎.
+
+
+ Let 𝑿𝟏, 𝑿𝟐, … , 𝑿𝒏 is a random sample of size 𝒏 taken from population with mean
+   𝝁 and variance 𝝈𝟐(Unknown), then
+                                  𝒔              𝒔
+                    𝑿 −𝑧𝛼   𝝁< 𝑿 + 𝑧𝛼                                      2 𝒏<           2 𝒏
+ If the sample size 𝒏≥𝟑𝟎.
+
+ Let 𝑿𝟏, 𝑿𝟐, … , 𝑿𝒏 is a random sample of size 𝒏 taken from population with mean
+   𝝁 and variance 𝝈𝟐(Unknown), then
+                                  𝒔                   𝒔
+                𝑿 −𝑇𝛼                                   2,𝑛−1 𝒏< 𝝁< 𝑿 + 𝑇𝛼2,𝑛−1  𝒏
+
+
+ If the population is approximately normal distributed and the sample size 𝒏< 𝟑𝟎.
+                                                                                                       6
+
+=== LECTURE 4 / PDF PAGE 7 ===
+Remark:
+
+  •  The given data of the problems are:
+
+
+
+     The mean of                               𝝈 𝒐𝒓 𝑺
+       the sample           The sample
+        𝑿                       size n
+
+
+ The question should be in the form
+      Find 95% confidence interval for the mean.
+         𝟏−𝜶= 𝟎. 𝟗𝟓→𝜶= 𝟏−𝟎. 𝟗𝟓= 𝟎. 𝟎𝟓→𝜶   𝟎. 𝟎𝟐𝟓                                𝟐=
+
+
+
+
+
+                                                                                                                    7
+
+=== LECTURE 4 / PDF PAGE 8 ===
+Example:
+A sample of size 25 drawn from a normal population with unknown mean
+𝝁 and variance 16, have 𝑿 = 𝟏𝟓. Find 𝟗𝟓% confidence interval for the
+population mean
+
+                                          Solution
+
+  𝒏= 𝟐𝟓,       𝝈𝟐= 𝟏𝟔 →𝝈= 𝟒,       𝑿 = 𝟏𝟓
+    𝟏−𝜶= 𝟎. 𝟗𝟓→𝜶= 𝟎. 𝟎𝟓→𝜶   𝟎. 𝟎𝟐𝟓→𝒁𝜶   𝒁𝟎.𝟎𝟐𝟓= 𝟏. 𝟗𝟔                    𝟐=       𝟐=
+
+Find 95% confidence interval
+
+                        𝝈           𝝈
+            →𝑿 −𝑧𝛼                                  2 𝒏< 𝝁< 𝑿 + 𝑧𝛼2 𝒏
+                                              𝟒                 →𝟏𝟓−1. 𝟗𝟔𝟒 < 𝝁< 𝟏𝟓+ 1.96
+                              𝟐𝟓              𝟐𝟓
+                         →𝟏𝟑. 𝟒𝟑< 𝝁< 𝟏𝟔. 𝟓𝟕
+
+
+
+                                                                                                       8
+
+=== LECTURE 4 / PDF PAGE 9 ===
+Example:
+The mean and the standard deviation for the quality point average of the
+random sample of 36 college seniors are calculated to be 2.6 and 4
+respectively. Find 95% confidence interval for the mean of the senior class.
+                         Solution
+
+         𝒏= 𝟑𝟔,      𝒔= 𝟒 ,       𝑿 = 𝟐. 𝟔
+
+        𝟏−𝜶= 𝟎. 𝟗𝟓→𝜶= 𝟎. 𝟎𝟓→𝜶   𝟎. 𝟎𝟐𝟓→𝒁𝜶   𝒁𝟎.𝟎𝟐𝟓= 𝟏. 𝟗𝟔                        𝟐=       𝟐=
+
+                             𝒔              𝒔
+           →𝑿 −𝑧𝛼   𝝁< 𝑿 + 𝑧𝛼                                2 𝒏<           2 𝒏
+
+                           𝟒                𝟒
+               →𝟐. 𝟔−1.96   < 𝝁< 𝟐. 𝟔+ 1.96
+                           𝟑𝟔               𝟑𝟔
+
+                       →𝟐. 𝟓< 𝝁< 𝟐. 𝟕
+
+
+                                                                                                    9
+
+=== LECTURE 4 / PDF PAGE 10 ===
+Example:
+
+                          𝟒𝟎                 𝟒𝟎A random sample with  𝒊=𝟏 𝒙𝒊= 𝟐𝟖𝟎 and  𝒊=𝟏 𝒙𝒊𝟐= 𝟐𝟏𝟎𝟎 . Construct 95% confidence
+
+interval for the population mean .
+                                      Solution
+
+               𝒏= 𝟒𝟎, 𝟏−𝜶= 𝟎. 𝟗𝟓→𝜶= 𝟎. 𝟎𝟓→𝜶   𝟎. 𝟎𝟐𝟓→𝒁𝜶   𝒁𝟎.𝟎𝟐𝟓= 𝟏. 𝟗𝟔                                   𝟐=       𝟐=
+
+
+
+                                                      𝟒𝟎
+                                                          𝒊=𝟏 𝒙𝒊  𝟐𝟖𝟎
+                              𝑿 =     =      𝟕                                     𝒏   𝟒𝟎=
+
+
+                         𝟒𝟎                𝟐
+               𝟏                𝟒𝟎𝒊=𝟏 𝒙𝒊      𝟏
+        𝑺𝟐=        𝒙𝒊𝟐−       =              = 𝟑. 𝟓𝟗→𝒔= 𝟏. 𝟖𝟗          𝒏−𝟏          𝒏     𝟒𝟎−𝟏𝟐𝟏𝟎𝟎−𝟐𝟖𝟎𝟐𝟒𝟎
+                          𝒊=𝟏
+
+                                           𝒔              𝒔
+                   →𝑿 −𝑧𝛼   𝝁< 𝑿 + 𝑧𝛼                                                 2 𝒏<           2 𝒏
+
+                                                       𝟏. 𝟖𝟗                  𝟏. 𝟖𝟗
+                     →7 −1.96    < 𝝁< 𝟕+ 1.96
+                                       𝟒𝟎             𝟒𝟎
+
+                                 →𝟔. 𝟒𝟏< 𝝁< 𝟕. 𝟓𝟗
+
+
+
+                                                                                                                                 10
+
+=== LECTURE 4 / PDF PAGE 11 ===
+Example:
+A sample of 12 measurement of the breaking strength of cotton threads gave
+a mean of 7.38 and standard deviation of 1.24. find 95% confidence interval for
+the average limit for the actual strength.
+                              Solution
+
+             𝒏= 𝟏𝟐,   𝑿 = 𝟕. 𝟑𝟖,   𝒔= 𝟏. 𝟐𝟒
+
+  𝟏−𝜶= 𝟎. 𝟗𝟓→𝜶= 𝟎. 𝟎𝟓→𝜶   𝟎. 𝟎𝟐𝟓→𝒕𝜶         𝒕𝟎.𝟎𝟐𝟓, 𝟏𝟏= 𝟐. 𝟒𝟑𝟏                 𝟐=                 𝟐, 𝒏−𝟏=
+
+                               𝒔                   𝒔
+         →𝑿 −𝑇𝛼                              2,𝑛−1 𝒏< 𝝁< 𝑿 + 𝑇𝛼2,𝑛−1  𝒏
+
+                         𝟐𝟒                 𝟐𝟒          →𝟕. 𝟑𝟖−2. 𝟒𝟑𝟏𝟏.  < 𝝁< 𝟕. 𝟑𝟖+ 2. 𝟒𝟑𝟏𝟏.
+                         𝟏𝟐                 𝟏𝟐
+
+                    →𝟔. 𝟓𝟏< 𝝁< 𝟖. 𝟐𝟓
+
+
+
+
+                                                                                                                                                                                11
+
+=== LECTURE 4 / PDF PAGE 12 ===
+Example:
+A sample of 20 from a normal distribution has mean 32.8 and standard
+deviation 4.51. Construct 95% confidence interval for the mean.
+                              Solution
+
+              𝒏= 𝟐𝟎,   𝑿 = 𝟑𝟐. 𝟖,   𝒔= 𝟒. 𝟓𝟏
+
+  𝟏−𝜶= 𝟎. 𝟗𝟓→𝜶= 𝟎. 𝟎𝟓→𝜶   𝟎. 𝟎𝟐𝟓→𝒕𝜶         𝒕𝟎.𝟎𝟐𝟓, 𝟏𝟗= 𝟑. 𝟎𝟑𝟏                 𝟐=                 𝟐, 𝒏−𝟏=
+
+                               𝒔                   𝒔
+         →𝑿 −𝑇𝛼                              2,𝑛−1 𝒏< 𝝁< 𝑿 + 𝑇𝛼2,𝑛−1  𝒏
+
+                                   𝟒. 𝟓𝟏                       𝟒. 𝟓𝟏
+           →𝟑𝟐. 𝟖−3.031   < 𝝁< 𝟑𝟐. 𝟖+ 3.031
+                         𝟐𝟎                 𝟐𝟎
+
+                    →𝟐𝟗. 𝟕𝟒< 𝝁< 𝟑𝟓. 𝟖𝟔
+
+
+
+
+
+                                                                                                                                          12
+
+=== LECTURE 4 / PDF PAGE 13 ===
+Example:
+An electrical firm supplies light to a company for use in their poppers that have a
+length of life that is approximately normally distributed with a standard deviation
+of 40 hours. If a random sample of 30 bulbs has an average life of 780 hours. Find
+95% confidence interval of the population mean.
+
+
+                              Solution
+
+
+                                                   ............بنفسك حل
+
+
+
+
+
+                                                                                                                                                13
+
+=== LECTURE 4 / PDF PAGE 14 ===
+Very Important Remark:
+
+ We use the standard error to find the sample size . The standard error of the
+ confidence interval is defend as :
+
+ The standard error for the confidence interval when the population variance
+   𝝈𝟐(Known) is
+                                  𝝈
+                        𝐒𝐄= 𝑧𝛼
+                                                2 𝒏
+ If the population is normally distributed or the sample size 𝒏≥𝟑𝟎.
+
+ The standard error for the confidence interval when the population variance
+   𝝈𝟐(Unknown) is
+                                           𝒔
+                        𝐒𝐄= 𝑧𝛼
+                                                2 𝒏
+ If the sample size 𝒏≥𝟑𝟎.
+
+ The standard error for the confidence interval when the population variance
+   𝝈𝟐(Unknown), then
+                                             𝒔
+                      𝐒𝐸= 𝑇𝛼
+                                                2,𝑛−1  𝒏
+
+ If the population is approximately normal distributed and the sample size 𝒏< 𝟑𝟎.
+
+                                                                                                                                    14
+
+=== LECTURE 4 / PDF PAGE 15 ===
+Example:
+The mean and standard deviation for the quality point average of a random sample of
+college senior are calculated to be 2.6 and 0.3 respectively. How large the sample size is
+required if we want to be 95% confidence interval of the mean is off by less than 0.05.
+                              Solution
+
+
+            𝑿 = 𝟐. 𝟔,      𝒔= 𝟎. 𝟑 ,      𝒆= 𝟎. 𝟎𝟓
+
+     𝟏−𝜶= 𝟎. 𝟗𝟓→𝜶= 𝟎. 𝟎𝟓→𝜶   𝟎. 𝟎𝟐𝟓→𝒁𝜶   𝒁𝟎.𝟎𝟐𝟓= 𝟏. 𝟗𝟔                     𝟐=       𝟐=
+
+
+            𝝈              𝟑     𝐒𝐄= 𝑧𝛼     𝟎𝟓= 𝟏. 𝟗𝟔𝟎.   𝒏= 𝟏𝟏. 𝟕𝟔→𝒏= 𝟏𝟑𝟐. 𝟑≅𝟏𝟑𝟐.               2 𝒏→𝟎.      𝒏→
+
+
+
+
+
+                                                                                                                                             15
+
+=== LECTURE 4 / PDF PAGE 16 ===
+16

@@ -1,0 +1,455 @@
+
+=== LECTURE 1 / PDF PAGE 1 ===
+ Lecture 1
+
+        By
+Mohamed Ebrahim Sobh
+
+
+
+
+
+                                                                                                                                        1
+
+=== LECTURE 1 / PDF PAGE 2 ===
+      Contents of This Course
+
+Chapter (1): Normal Distribution.
+Chapter (2): Distributions Derived From Normal
+  Distributions (Chi-Squared, Student-t, and F
+  distribution ).
+and Central Limit Theorem .
+Chapter (3): Statistical Estimation, Point Estimation,
+ Confidence Interval.
+Chapter (4): Test of Hypothesis, Fitting Straight Lines.
+Chapter (5): Analysis of Variance, Stochastics Models,
+ Poisson Processes.
+
+
+                                                                                                                   2
+
+=== LECTURE 1 / PDF PAGE 3 ===
+ Methods of students’ assessment
+
+Course Work: 10-Marks.
+
+Project: 20-Marks.
+
+Midterm Exam: 20-Marks.
+
+Final Exam: 50-Marks.
+
+Total: 100-Marks.
+
+
+
+
+
+                                                                                                                       3
+
+=== LECTURE 1 / PDF PAGE 4 ===
+  Teaching and Learning Methods
+
+Lectures.
+
+Tutorial.
+
+Self-learning.
+
+Projects.
+
+Discussion.
+
+
+
+
+
+                                                                                                       4
+
+=== LECTURE 1 / PDF PAGE 5 ===
+             Chapter (1)
+        Normal Distribution
+
+❑One of the most important continuous distribution.
+
+❑Many measurable characteristics are normally distributed or approximately
+
+normally distributed.
+
+❑The normal depend on two parameters which are mean (𝝁) and variance
+
+(𝝈𝟐).
+
+❑ The probability density function of the normal distribution is given in the
+
+form:
+
+
+                                                        𝟐
+                         𝟏      𝒙−𝝁             𝒇𝒙; 𝝁, 𝝈𝟐=      𝒆−𝟏                                        𝟐  𝝈      ,   −∞< 𝒙< ∞.
+                𝝈𝟐𝝅
+
+                                                                                                                    5
+
+=== LECTURE 1 / PDF PAGE 6 ===
+❑The continuous random variable X which has a normal distribution has
+
+serval important characteristics:
+
+1) −∞< 𝒙< ∞.
+
+2) The density function of 𝑿, 𝒇(𝒙) has a bell- shaped curve and never touch 𝒙−axis.
+
+3) The area under normal curve equal one.
+
+4) The highest point of the curve of 𝒇(𝒙) at mean (𝝁).
+
+ 5) The curve of 𝒇(𝒙) is symmetric about the mean (𝝁) (i.e., mean=median =mode).
+
+6) Normal distributions are denser in the center and less dense in the tails.
+
+7) if the random variable X is normally distributes with mean (𝝁) and variance (𝝈𝟐),
+
+we write
+
+             𝑿~𝑵𝒐𝒓𝒎𝒂𝒍  𝝁, 𝝈𝟐     𝒐𝒓  𝑿~𝑵  𝝁, 𝝈𝟐
+
+
+
+
+                                                                                                       6
+
+=== LECTURE 1 / PDF PAGE 7 ===
+8) We note that about 68% of area of a normal distribution is within one standard
+
+deviation of the mean
+
+            𝑷𝝁−𝝈< 𝑿< 𝝁+ 𝝈= 𝟔𝟖%
+
+9) Approximately 95% of area of a normal distribution is within two standard
+
+deviation of the mean
+
+            𝑷𝝁−𝟐𝝈< 𝑿< 𝝁+ 𝟐𝝈= 𝟗𝟓%
+
+10) Approximately 99.7% of area of a normal distribution is within three standard
+
+deviation of the mean
+
+             𝑷𝝁−𝟑𝝈< 𝑿< 𝝁+ 𝟑𝝈= 𝟗𝟗. 𝟕%
+
+
+
+
+
+                                                                                                                    7
+
+=== LECTURE 1 / PDF PAGE 8 ===
+0.5       0.5
+
+
+
+
+   (𝝁)
+
+
+
+
+
+                                                          8
+
+=== LECTURE 1 / PDF PAGE 9 ===
+       Standard Normal Distribution
+❑The standard normal distribution is very important because the probabilities
+of any normal distribution is calculated from the probabilities of standard
+normal distribution
+❑ The normal distribution with mean 𝝁= 0 and variance 𝝈𝟐= 𝟏 is called
+standard normal distribution and is denoted by 𝐙~𝑵  𝟎, 𝟏.
+
+❑ The continuous random variable X which has a normal distribution has
+
+serval important characteristics:
+
+1) −∞< 𝒛< ∞.
+
+2) The density function of 𝐙 has a bell- shaped curve and never touch 𝒙−axis.
+
+3) The area under normal curve equal one.
+
+4) The highest point of the curve of standard normal distribution at 𝝁= 𝟎.
+
+ 5) The curve of standard normal is symmetric about 𝝁= 𝟎 (i.e., mean=median
+
+=mode).
+
+
+
+                                                                                                      9
+
+=== LECTURE 1 / PDF PAGE 10 ===
+                                                  0.5       0.5
+
+
+
+                        (𝝁= 𝟎)
+
+❑In order to calculate the probabilities of a random variable 𝑿~𝑵  𝝁, 𝝈𝟐 we
+must convert to standard normal distribution (Change 𝑿 to 𝒁 ).
+
+❑Changing from normal to standard normal:
+
+                              𝑿−𝝁
+                If 𝑿~𝑵  𝝁, 𝝈𝟐, then 𝒁=   ~𝑵  𝟎, 𝟏
+                                  𝝈
+
+
+
+
+
+                                                                                                                                  10
+
+=== LECTURE 1 / PDF PAGE 11 ===
+❑Remark:
+
+
+               𝑿−𝝁   𝒂−𝝁          𝒂−𝝁       𝒂−𝝁
+i.𝑷𝑿< 𝒂= 𝑷 𝝈<  𝝈  = 𝑷𝒁<  𝝈  = 𝝋 𝝈.
+
+
+               𝑿−𝝁   𝒂−𝝁          𝒂−𝝁          𝒂−𝝁
+ii.𝑷𝑿> 𝒂= 𝑷 𝝈>  𝝈  = 𝑷𝒁>  𝝈  = 𝟏−𝝋  𝝈
+
+
+                    𝒂−𝝁   𝑿−𝝁   𝒃−𝝁      𝒂−𝝁       𝒃−𝝁       𝒃−𝝁
+iii.𝑷𝒂< 𝑿< 𝒃= 𝑷 𝝈<  𝝈 <  𝝈  = 𝑷 𝝈< 𝒁<  𝝈  = 𝝋  𝝈
+
+       𝒃−𝝁
+ −𝝋     𝝈.
+
+iv.𝝋−𝒂= 𝟏− 𝝋−𝒂.
+
+v. 𝑷𝒁< 𝟎= 𝑷𝒁> 𝟎= 𝟎. 𝟓
+
+vi.𝝋𝟎= 𝟎. 𝟓
+
+The value of 𝝋(. ) are obtained from standard normal table .
+
+
+                                                                                                                                                                                11
+
+=== LECTURE 1 / PDF PAGE 12 ===
+12
+
+=== LECTURE 1 / PDF PAGE 13 ===
+13
+
+=== LECTURE 1 / PDF PAGE 14 ===
+Example:
+If X is a normally distributed random variable represent the hemoglobin level for
+healthy adults male with mean 16 and variance 0.81. find the probability that
+healthy adult male has hemoglobin level less than or equal 14.
+                                  Solution
+
+    𝝁= 𝟏𝟔,                 𝝈𝟐= 𝟎. 𝟖𝟏,         𝝈= 𝟎. 𝟗
+
+        𝑷𝑿≤𝟏𝟒= 𝑷𝑿−𝝁 ≤𝟏𝟒−𝟏𝟔 = 𝑷𝒁≤−𝟐. 𝟐𝟐
+                          𝝈        𝟎. 𝟗
+
+
+                   = 𝝋−𝟐. 𝟐𝟐= 𝟎. 𝟎𝟏𝟑𝟐
+
+
+
+
+
+                                                                                                                                  14
+
+=== LECTURE 1 / PDF PAGE 15 ===
+Example:
+The weight of students of certain school are normally distributed with mean 40 kg
+and standard deviation 5 kg. Find the percentage of students whose weight
+     a) Less than 50 kg.
+    b) Between 30 kg and 55 kg.
+     c) More than 45 kg.
+                                  Solution
+
+                      𝝁= 𝟒𝟎,     𝝈= 𝟓
+
+
+
+                    𝑿−𝝁   𝟓𝟎−𝟒𝟎
+  a) 𝑷𝑿< 𝟓𝟎= 𝑷   <    = 𝑷𝒁< 𝟐= 𝝋𝟐= 𝟎. 𝟗𝟕𝟕𝟑.
+                       𝝈      𝟓
+
+
+                              𝟑𝟎−𝟒𝟎   𝑿−𝝁   𝟓𝟓−𝟒𝟎
+    b) 𝑷𝟑𝟎< 𝑿< 𝟓𝟓= 𝑷    <        = 𝑷−𝟐< 𝒁< 𝟑= 𝝋𝟑−𝝋−𝟐= 𝟎. 𝟗𝟗𝟖𝟕−                                 𝟓   𝝈<   𝟓
+
+                                               𝟎. 𝟎𝟐𝟐𝟖= 𝟎. 𝟗𝟕𝟓𝟗.
+
+
+
+                     𝑿−𝝁   𝟒𝟓−𝟒𝟎
+   c) 𝑷𝑿> 𝟒𝟓= 𝑷 𝝈>   𝟓  = 𝑷𝒁> 𝟏= 𝟏−𝝋𝟏= 𝟏−𝟎. 𝟖𝟒𝟏𝟑= 𝟎. 𝟏𝟓𝟖𝟕.
+
+
+
+
+
+                                                                                                                                             15
+
+=== LECTURE 1 / PDF PAGE 16 ===
+Example:
+A Certain type of storage battery lasts on the average 3 year, with standard deviation 0.5
+year Assume that battery lives are normally distributed find the probability that battery will
+lasts less than 2.3 year.
+                              Solution
+
+                𝝁= 𝟑,     𝝈= 𝟎. 𝟓
+
+
+
+                                            𝟐. 𝟑−𝟑      𝑷𝑿< 𝟐. 𝟑= 𝑷𝑿−𝝁 <      = 𝑷𝒁< −𝟏. 𝟒
+                       𝝈        𝟎. 𝟓
+
+
+             = 𝝋−𝟏. 𝟒= 𝟏−𝝋𝟏. 𝟒= 𝟎. 𝟎𝟖𝟎𝟖
+
+
+
+
+
+                                                                                                                                16
+
+=== LECTURE 1 / PDF PAGE 17 ===
+Example:
+     It is known that the waiting time (in minute) of Patients at a certain clinic are
+   𝑵(𝟏𝟐, 𝟏𝟔), find the Percentage of Patients who wait at clinic:
+    a) For less than 9 minutes.
+    b) For more than 10 minutes.
+    c) Between 8 and 14 minutes.
+                                       Solution
+
+               𝝁= 𝟏𝟐,      𝝈𝟐= 𝟏𝟔,    𝝈= 𝟒
+
+
+
+                  𝑿−𝝁   𝟗−𝟏𝟐
+  a)𝑷𝑿< 𝟗= 𝑷   <    = 𝑷𝒁< −𝟎. 𝟕𝟓= 𝝋−𝟎. 𝟕𝟓= 𝟎. 𝟐𝟐𝟔𝟔.
+                     𝝈      𝟒
+
+
+                   𝑿−𝝁   𝟏𝟎−𝟏𝟐
+ b) 𝑷𝑿> 𝟏𝟎= 𝑷   >    = 𝑷𝒁> −𝟎. 𝟓= 𝟏−𝝋−𝟎. 𝟓= 𝟏−(𝟏−𝝋𝟎. 𝟓) = 𝟎. 𝟓𝟗𝟖𝟕.
+                      𝝈      𝟒
+
+
+                         𝟖−𝟏𝟐   𝑿−𝝁   𝟏𝟒−𝟏𝟐
+  c) 𝑷𝟖< 𝑿< 𝟏𝟒= 𝑷    <   <    = 𝑷−𝟏< 𝒁< 𝟎. 𝟓= 𝝋𝟎. 𝟓−𝝋−𝟏= 𝟎. 𝟒𝟎𝟏𝟑
+                            𝟒      𝝈      𝟒
+
+                       −𝟎. 𝟏𝟓𝟖𝟕= 𝟎. 𝟐𝟒𝟐𝟔.
+
+
+
+
+
+                                                                                                                                            17
+
+=== LECTURE 1 / PDF PAGE 18 ===
+Example:
+The height of 1000 student in a certain College are normally distributed with mean
+68 inches and standard deviation of 3 inches. How many of these students would
+You expected to have heights:
+    a) less than 64 inches.
+    b) Between 67 and 71 inches.
+                                       Solution
+
+           𝝁= 𝟔𝟖,      𝝈= 𝟑,     𝑵= 𝟏𝟎𝟎𝟎
+
+
+
+                       𝑿−𝝁   𝟔𝟒−𝟔𝟖
+     a)𝑷𝑿< 𝟔𝟒= 𝑷 𝝈<   𝟑  = 𝑷𝒁< −𝟏. 𝟑𝟑= 𝝋−𝟏. 𝟑𝟑= 𝟎. 𝟎𝟗𝟏𝟖.
+
+             Number of student= 𝟎. 𝟎𝟗𝟏𝟖∗𝟏𝟎𝟎𝟎= 𝟗𝟏. 𝟖≈𝟗𝟐
+                                                    .
+
+
+                               𝟔𝟕−𝟔𝟖   𝑿−𝝁   𝟕𝟏−𝟔𝟖
+     b)𝑷𝟔𝟕< 𝑿< 𝟕𝟏= 𝑷    <        = 𝑷−𝟎. 𝟑𝟑< 𝒁< 𝟏= 𝝋𝟏                                  𝟑   𝝈<   𝟑
+
+             −𝝋−𝟎. 𝟑𝟑= 𝟎. 𝟖𝟒𝟏𝟑−𝟎. 𝟑𝟕𝟎𝟕= 𝟎. 𝟒𝟕𝟎𝟔.
+
+
+            Number of student= 𝟎. 𝟒𝟕𝟎𝟔∗𝟏𝟎𝟎𝟎= 𝟒𝟕𝟎. 𝟔≈𝟒𝟕𝟏
+                                                  .                                                                                                      18
+
+=== LECTURE 1 / PDF PAGE 19 ===
+Example:
+    Let 𝑿 has 𝑵(𝟖, σ2) Find:
+   a) 𝐏(𝟖−𝛔< 𝐗< 𝟖+ 𝛔).
+   b) 𝐏(𝟖−𝟐𝛔< 𝐗< 𝟖+ 𝟑𝛔).
+                                Solution
+
+                    𝝁= 𝟖
+
+
+
+                                 (𝟖−𝝈)−𝟖   𝑿−𝝁   (𝟖+𝝈)−𝟖
+a) 𝑷𝟖−𝝈< 𝑿< 𝟖+ 𝝈= 𝑷     <   <     = 𝑷−𝟏< 𝒁< 𝟏= 𝝋𝟏
+                                  𝝈       𝝈       𝝈
+
+          −𝝋−𝟏= 𝟎. 𝟖𝟒𝟏𝟑−𝟎. 𝟏𝟓𝟖𝟕= 𝟎. 𝟔𝟖𝟐𝟔.
+
+
+
+                                      (𝟖−𝟐𝝈)−𝟖   𝑿−𝝁   (𝟖+𝟑𝝈)−𝟖
+ b) 𝑷𝟖−𝟐𝝈< 𝑿< 𝟖+ 𝟑𝝈= 𝑷      <   <      = 𝑷−𝟐< 𝒁< 𝟑
+                                       𝝈       𝝈       𝝈
+
+           = 𝝋𝟑−𝝋−𝟐= 𝟎. 𝟗𝟗𝟖𝟕−𝟎. 𝟎𝟐𝟐𝟖= 𝟎. 𝟗𝟕𝟓𝟗.
+
+
+
+
+
+                                                                                                                               19
+
+=== LECTURE 1 / PDF PAGE 20 ===
+Example:
+    Let 𝑿 has 𝑵(𝟏𝟐, 𝟗) Find:
+     a) The value of k such that 𝑷𝑿< 𝒌= 𝟎. 𝟗𝟖𝟕𝟓.
+     b) The value of k such that 𝑷𝑿> 𝒌= 𝟎. 𝟐𝟓.
+                                             Solution
+
+                𝝁= 𝟏𝟐,      𝝈𝟐= 𝟗,    𝝈= 𝟑
+
+
+
+                  𝑿−𝝁   𝒌−𝟏𝟐           𝒌−𝟏𝟐       𝒌−𝟏𝟐
+a) 𝑷𝑿< 𝒌= 𝑷 𝝈<  𝟑  = 𝑷𝒁<  𝟑  = 𝝋   𝟑  = 𝟎. 𝟗𝟖𝟕𝟓.
+
+    From standard normal table we have:
+
+
+           𝒌−𝟏𝟐
+                = 𝟐. 𝟐𝟒     𝒌−𝟏𝟐= 𝟔. 𝟕𝟐   𝒌= 𝟏𝟖. 𝟕𝟐
+                𝟑                                              .                                                                .
+
+
+                  𝑿−𝝁   𝒌−𝟏𝟐           𝒌−𝟏𝟐           𝒌−𝟏𝟐
+b) 𝑷𝑿> 𝒌= 𝑷   >    = 𝑷𝒁>    = 𝟏−𝝋    = 𝟎. 𝟐𝟓.
+                     𝝈      𝟑               𝟑               𝟑
+
+
+                       𝒌−𝟏𝟐
+    which implies 𝝋      =0.75. From standard normal table we have:
+                          𝟑
+
+
+            𝒌−𝟏𝟐
+                 = 𝟎.     𝒌−𝟖= 𝟐.     𝒌= 𝟏𝟎. 𝟎𝟐𝟓                 𝟑      𝟔𝟕𝟓.           𝟎𝟐𝟓.                                        20
+
+=== LECTURE 1 / PDF PAGE 21 ===
+21

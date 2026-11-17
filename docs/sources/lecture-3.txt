@@ -1,0 +1,341 @@
+
+=== LECTURE 3 / PDF PAGE 1 ===
+    Lecture 3
+
+       By
+ Dr/ Mohamed E. Sobh
+/Sobh                                                              1
+
+=== LECTURE 3 / PDF PAGE 2 ===
+  Sampling distribution of the variance (𝒔𝟐)
+
+Let 𝑿𝟏, 𝑿𝟐, … , 𝑿𝒏 is a random sample od size 𝒏 taken from normal population with
+  mean 𝝁 and variance 𝝈𝟐 then:
+                             (𝒏−𝟏)𝒔𝟐
+                     𝝌𝟐=        ~𝝌𝟐
+                             𝝈𝟐         (𝒏−𝟏)
+Remark:
+
+         (𝒏−𝟏)𝒔𝟐                 (𝒏−𝟏)
+  𝑬      =         𝑬𝒔𝟐=      𝑬𝒔𝟐= 𝝈𝟐.           𝝈𝟐      𝒏−𝟏………...  𝝈𝟐         𝒏−𝟏………...
+
+
+         (𝒏−𝟏)𝒔𝟐                 𝒏−𝟏𝟐                                   𝟐𝝈𝟒
+  𝑽      =           𝑽𝒔𝟐=       𝑽𝒔𝟐=           𝝈𝟐     𝟐𝒏−𝟏………...   𝝈𝟒        𝟐𝒏−𝟏………...        𝒏−𝟏.
+ 𝑷𝝌𝟐> 𝒂= 𝟏−𝑷𝝌𝟐< 𝒂.
+ 𝑷𝒂< 𝝌𝟐< 𝒃= 𝑷𝝌𝟐> 𝒂-𝑷𝝌𝟐> 𝒃
+
+
+
+
+
+                                                                                                                   2
+
+=== LECTURE 3 / PDF PAGE 3 ===
+  Example:
+Find the probability that a random sample of 25 observations from a normal population with variance 6,
+will have variance
+     a) More than 9.1 .
+     b) Between 3.462 and 10.745.
+
+                                                          Solution
+
+                     𝒏= 𝟐𝟓,           𝝈𝟐= 𝟔
+
+
+                                     (𝒏−𝟏)𝒔𝟐
+                           𝝌𝟐=        ~𝝌𝟐
+                                            𝝈𝟐         (𝒏−𝟏)
+
+
+                                           (𝒏−𝟏)𝒔𝟐    𝟗.𝟏(𝟐𝟓−𝟏)
+           a)𝑷𝒔𝟐> 𝟗. 𝟏= 𝑷     >      = 𝑷𝝌𝟐> 𝟑𝟔. 𝟒= 𝟎. 𝟎𝟓
+                                            𝝈𝟐         𝟔
+
+
+
+                                               𝟑.𝟒𝟔𝟐(𝟐𝟓−𝟏)    (𝒏−𝟏)𝒔𝟐    𝟏𝟎.𝟕𝟒𝟓(𝟐𝟓−𝟏)
+      b)𝑷𝟑. 𝟒𝟔𝟐< 𝒔𝟐< 𝟏𝟎. 𝟕𝟒𝟓= 𝑷       <     <        = 𝑷𝟏𝟑. 𝟖𝟒𝟖< 𝝌𝟐< 𝟒𝟐. 𝟗𝟖
+                                               𝟔           𝝈𝟐           𝟔
+
+                   = 𝑷𝝌𝟐> 𝟏𝟑. 𝟖𝟒𝟖−𝑷𝝌𝟐> 𝟒𝟐. 𝟗𝟖= 𝟎. 𝟗𝟓−𝟎. 𝟎𝟏= 𝟎. 𝟗𝟒
+
+
+
+
+
+                                                                                                                         3
+
+=== LECTURE 3 / PDF PAGE 4 ===
+Example:
+If 𝑿~𝑵𝟏𝟎, 𝟒, and 𝒏= 𝟖, find 𝑷(𝟏. 𝟓< 𝒔𝟐< 𝟔).
+                            Solution
+
+             𝒏= 𝟖,           𝝈𝟐= 𝟒
+
+
+                         (𝒏−𝟏)𝒔𝟐
+                 𝝌𝟐=        ~𝝌𝟐
+                               𝝈𝟐         (𝒏−𝟏)
+
+
+                           𝟏. 𝟓(𝟖−𝟏)   (𝒏−𝟏)𝒔𝟐  𝟔(𝟖−𝟏)
+ 𝑷𝟏. 𝟓< 𝒔𝟐< 𝟔= 𝑷        <       <
+                      𝟒          𝝈𝟐        𝟒
+
+
+     = 𝑷𝟐. 𝟔𝟐𝟓< 𝝌𝟐< 𝟏𝟎. 𝟓 = 𝑷𝝌𝟐> 𝟐. 𝟔𝟐𝟓−𝑷𝝌𝟐> 𝟏𝟎. 𝟓= 𝟎. 𝟖𝟒−𝟎. 𝟎𝟖
+
+
+      = 𝟎. 𝟕𝟔
+
+
+                                                                                                       4
+
+=== LECTURE 3 / PDF PAGE 5 ===
+Example:
+A pharmaceutical company produces tablets that are assumed to have weights
+normally distributed with mean 𝝁= 𝟐𝟓𝟎 𝒎𝒈 and variance 𝝈𝟐= 𝟏𝟔𝒎𝒈². To
+check the consistency of production, a quality control inspector randomly
+selects a sample of 𝒏= 𝟏𝟐 tablets. Find the probability that the sample
+variance exceeds 25 mg²
+                              Solution
+
+            𝒏= 𝟏𝟐,           𝝈𝟐= 𝟏𝟔
+
+
+                        (𝒏−𝟏)𝒔𝟐
+                𝝌𝟐=        ~𝝌𝟐
+                              𝝈𝟐         (𝒏−𝟏)
+
+
+               (𝒏−𝟏)𝒔𝟐   𝟐𝟓(𝟏𝟐−𝟏)
+ 𝑷𝒔𝟐> 𝟐𝟓= 𝑷       >         = 𝑷𝝌𝟐> 𝟏𝟕. 𝟏𝟖𝟕𝟓 = 𝟎. 𝟐𝟓
+                   𝝈𝟐        𝟏𝟔
+
+
+
+
+                                                                                                                   5
+
+=== LECTURE 3 / PDF PAGE 6 ===
+ Sampling distribution of the proportion (𝒑)
+
+Let 𝑿𝟏, 𝑿𝟐, … , 𝑿𝒏 is a random sample od size 𝒏 taken from population then:
+
+                                      Sample of size n
+    Specific characteristics
+
+                             x
+
+
+  The proportion is defined as:
+
+                       𝑿
+                    𝑷 =      𝟎≤ 𝑷 ≤𝟏.Remark:                              𝒏,
+
+  𝑷→ proportion of the population.
+  𝑷 → proportion of the sample.
+
+
+
+
+
+                                                                                                      6
+
+=== LECTURE 3 / PDF PAGE 7 ===
+Let 𝑿𝟏, 𝑿𝟐, … , 𝑿𝒏 is a random sample of size 𝒏 taken from population with
+proportion then:
+                                         𝑷(𝟏−𝑷)
+           𝑬(𝑷 ) = 𝑷        𝒂𝒏𝒅       𝑽𝑷 =
+                                             𝒏
+Then
+                        𝑷 −𝑷
+                𝒁=          ~𝑵(𝟎, 𝟏)
+                        𝑷(𝟏−𝑷)
+                           𝒏
+In order to use the normal approximation, n should be large enough so that
+                  𝒏𝒑≥𝟓,      𝒏(𝟏−𝒑) ≥𝟓
+
+
+
+                                           𝑷(𝟏−𝑷)
+❑ Remark: We note that the quantity          is called the standard error of the
+                                          𝒏
+proportion.
+
+
+
+
+
+                                                                                                                 7
+
+=== LECTURE 3 / PDF PAGE 8 ===
+Example:
+The proportion of a population with a characteristic of interest is 𝒑= 𝟎. 𝟑𝟕.
+Find the mean and standard deviation of the sample proportion 𝒑 obtained
+from random samples of size 𝟏𝟐𝟓.
+                               Solution
+
+
+            𝑷= 𝟎. 𝟑𝟕,        𝒏= 𝟏𝟐𝟓
+
+
+
+                                       𝑷(𝟏−𝑷)   𝟎.𝟑𝟕(𝟏−𝟎.𝟑𝟕)
+           Variance of 𝑷 = 𝑽𝑷 =    =       = 𝟎. 𝟎𝟎𝟏𝟗
+                                     𝒏         𝟏𝟐𝟓
+
+
+
+              Standard deviation of 𝑷 = 𝑽𝑷 = 𝟎. 𝟎𝟒𝟑𝟔
+
+
+
+
+
+                                                                                                       8
+
+=== LECTURE 3 / PDF PAGE 9 ===
+Example:
+A factory with 100 workers, including 20 smokers. If we select at random 36 workers,
+calculate the probability that the proportion of smokers in the sample is more than 0.1.
+                              Solution
+
+
+                                     𝟐𝟎
+          𝑵= 𝟏𝟎𝟎,  𝑿= 𝟐𝟎→𝑷= 𝟏𝟎𝟎= 𝟎. 𝟐,     𝒏= 𝟑𝟔
+
+                            𝑷 −𝑷
+                    𝒁=          ~𝑵(𝟎, 𝟏)
+                             𝑷(𝟏−𝑷)
+                                𝒏
+
+
+
+                𝑷 −𝑷         𝟎. 𝟏−𝟎. 𝟐
+  𝑷𝑷 > 𝟎. 𝟏= 𝑷        >          = 𝑷𝒁> −𝟏. 𝟒𝟗= 𝟏−𝝋−𝟏. 𝟒𝟗
+                𝑷(𝟏−𝑷)     𝟎. 𝟐(𝟏−𝟎. 𝟐)
+                  𝒏          𝟑𝟔
+
+        = 𝟏−𝟏−𝝋𝟏. 𝟒𝟗  = 𝟏−𝟏−𝟎. 𝟗𝟐𝟓𝟏= 𝟎. 𝟗𝟐𝟓𝟏.
+
+
+
+
+
+                                                                                                    9
+
+=== LECTURE 3 / PDF PAGE 10 ===
+Example:
+A recent study shows that 30% of university students prefer online learning over traditional
+classroom instruction. A researcher randomly selects a sample of 𝒏= 𝟏𝟐𝟎 students from the
+same university. Let 𝑷 represent the sample proportion of students who prefer online
+learning. Answer the following questions:
+a)  Find the mean and standard deviation of the sampling distribution of 𝑷  ​.
+b) Approximate the probability that more than 35% of the sampled students prefer online
+    learning.
+
+                                    Solution
+
+                𝑷= 𝟎. 𝟑,        𝒏= 𝟏𝟐𝟎
+
+                           𝑷 −𝑷
+                  𝒁=          ~𝑵(𝟎, 𝟏)
+                           𝑷(𝟏−𝑷)
+                              𝒏
+
+                                                                                         𝟎.𝟑(𝟏−𝟎.𝟑)
+a)  Mean of 𝑷 = 𝐏= 𝟎. 𝟑,  &&&     standard deviation of 𝑷 =       = 𝟎. 𝟎𝟒𝟐
+                                                                            𝟏𝟐𝟎
+                      𝑷−𝑷      𝟎.𝟑𝟓−𝟎.𝟑
+b) 𝑷𝑷 > 𝟎. 𝟑𝟓= 𝑷     >      = 𝑷𝒁> 𝟏. 𝟏𝟗= 𝟏−𝝋𝟏. 𝟏𝟗= 𝟏−𝟎. 𝟖𝟖𝟑𝟎
+                                𝑷(𝟏−𝑷)      𝟎.𝟑(𝟏−𝟎.𝟑)
+                               𝒏          𝟏𝟐𝟎
+   = 𝟎. 𝟏𝟏𝟕.
+
+
+
+                                                                                                                                 10
+
+=== LECTURE 3 / PDF PAGE 11 ===
+Example:
+In Kansas, 𝟑𝟓% of adults over years 𝟐𝟓 old have a bachelor's degree or higher. Determine
+the probability of randomly selecting fifteen Kansas adults over 𝟐𝟓 years old in which less
+than 𝟐𝟎% of the sample group have a bachelor's degree or higher.
+                                 Solution
+
+          𝑷= 𝟑𝟓% = 𝟎. 𝟑𝟓,        𝒏= 𝟏𝟓
+
+
+
+                            𝑷 −𝑷
+                   𝒁=        ~𝑵𝟎, 𝟏
+                            𝑷(𝟏−𝑷)
+                               𝒏
+
+                𝑷 −𝑷         𝟎. 𝟐−𝟎. 𝟑𝟓
+  𝑷𝑷 < 𝟎. 𝟐= 𝑷        <            = 𝑷𝒁< 𝟏. 𝟐𝟐
+                𝑷(𝟏−𝑷)     𝟎. 𝟑𝟓(𝟏−𝟎. 𝟑𝟓)
+                   𝒏           𝟏𝟓
+       = 𝝋𝟏. 𝟐𝟐= 0.8888.
+
+
+
+
+
+                                                                                                                                                                                   11
+
+=== LECTURE 3 / PDF PAGE 12 ===
+Example:
+A humane society reports that 𝟏𝟗% of all pet dogs were adopted from an animal shelter.
+Assuming the truth of this assertion, find the probability that in a random sample of 𝟖𝟎
+pet dogs, between 15% and 20% were adopted from a shelter. You may assume that the
+normal distribution applies.
+                                            Solution
+
+               𝑷= 𝟏𝟗% = 𝟎. 𝟏𝟗,        𝒏= 𝟖𝟎
+
+
+                            𝑷 −𝑷
+                   𝒁=        ~𝑵𝟎, 𝟏
+                            𝑷(𝟏−𝑷)
+                               𝒏
+
+                                         𝟎. 𝟏𝟓−𝟎. 𝟏𝟗     𝑷 −𝑷         𝟎. 𝟐−𝟎. 𝟏𝟗
+      𝑷𝟎. 𝟏𝟓< 𝑷 < 𝟎. 𝟐= 𝑷            <       <
+                                        𝟎. 𝟏𝟗(𝟏−𝟎. 𝟏𝟗)   𝑷(𝟏−𝑷)     𝟎. 𝟏𝟗(𝟏−𝟎. 𝟏𝟗)
+                                𝟖𝟎          𝒏           𝟖𝟎
+             = 𝑷−𝟗. 𝟏𝟐< 𝒁< 𝟐. 𝟐𝟖= 𝝋𝟐. 𝟐𝟖−𝝋−𝟗. 𝟏𝟐=
+
+
+                    𝝋𝟐. 𝟐𝟖−(𝟏−𝝋𝟗. 𝟏𝟐) = 0.9887.
+
+
+
+
+                                                                                                                                           12
+
+=== LECTURE 3 / PDF PAGE 13 ===
+Example:
+A health organization reports that 18% of adults are smokers in a certain city.
+A public health researcher randomly selects a sample of 𝒏= 𝟐𝟎𝟎 adults from the city.
+Let 𝑷 denote the sample proportion of smokers
+a)  Find the mean and standard deviation of the sampling distribution of 𝑷  ​.
+
+b) Approximate the probability that the sample proportion is less than 15%.
+
+
+                              Solution
+
+
+                                                   ............بنفسك حل
+
+
+
+
+
+                                                                                                                                                13
+
+=== LECTURE 3 / PDF PAGE 14 ===
+14
