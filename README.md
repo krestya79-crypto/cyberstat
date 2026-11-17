@@ -4,7 +4,9 @@
 
 Probability & Statistics Interactive Learning Platform. Developed by **Ahmed Waleed Gad**, under the supervision of **Dr. Mohamed Ibrahim**, Faculty of Artificial Intelligence and Informatics, Intelligent Cyber-Security Program, Horus University – Egypt.
 
-CyberStat is a static, browser-local React + TypeScript application built from the four supplied lecture PDFs. It includes an introductory page, a study overview, searchable course explorer, dedicated topic workspaces, worked-example library, formula notebook, original PDF references, and project credits.
+CyberStat is a browser-local React + TypeScript application with one primary **Equation Solver** workspace integrating a scientific calculator, equation input, answer memory, and Quick/Detailed mathematical solutions. The sidebar contains Equation Solver, Worked Examples, and Formula Notebook. The existing worked-example and formula sections, lecture content, statistical calculators, PDF references, progress, and design system are preserved.
+
+The unified solver handles real numerical expressions and linear/quadratic equations in `x`, including complex conjugate quadratic roots. It supports parentheses, powers, roots, trigonometric functions with DEG/RAD modes, logarithms, factorials, percentages, constants, and `Ans`. It does not solve variable-denominator, higher-degree, transcendental, or simultaneous equations. Supported operations and numerical precision notes are shown inside the workspace. Existing lecture tools remain available in its expandable Probability & Statistics section; old `#/dashboard` and `#/course` URLs resolve to the unified application.
 
 ## Run locally
 

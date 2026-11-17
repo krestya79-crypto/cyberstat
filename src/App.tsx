@@ -1,26 +1,23 @@
 import { useEffect, useRef, useState } from 'react';
 import {
-  Home,
-  LayoutDashboard,
-  BookOpen,
+  Calculator,
   Library,
   FunctionSquare,
   ArrowUpRight,
   Search,
   GraduationCap,
-  Info,
   ChevronRight,
 } from 'lucide-react';
-import { Welcome, Dashboard, Course, Examples, Formulas, About } from './pages/StudyPages';
+import { Examples, Formulas, About } from './pages/StudyPages';
+import { EquationSolver } from './pages/EquationSolver';
 import { TopicPage } from './pages/TopicPage';
 import { PwaControls, useConnection } from './components/Pwa';
 import { useStored, type Progress } from './lib/storage';
 import { topicById } from './content/topics';
 const nav = [
-  { path: 'dashboard', label: 'Study overview', icon: LayoutDashboard },
-  { path: 'course', label: 'Course explorer', icon: BookOpen },
-  { path: 'examples', label: 'Worked examples', icon: Library },
-  { path: 'formulas', label: 'Formula notebook', icon: FunctionSquare },
+  { path: 'solver', label: 'Equation Solver', icon: Calculator },
+  { path: 'examples', label: 'Worked Examples', icon: Library },
+  { path: 'formulas', label: 'Formula Notebook', icon: FunctionSquare },
 ];
 export function App() {
   const [hash, setHash] = useState(location.hash || '#/');
@@ -36,11 +33,14 @@ export function App() {
   const [path, query = ''] = raw.split('?');
   const params = new URLSearchParams(query);
   const topicId = path.startsWith('topic/') ? path.slice(6) : '';
-  const selected = path.startsWith('topic/') ? 'course' : path;
+  const isSolver = !path || ['solver', 'dashboard', 'course'].includes(path);
+  const selected = path.startsWith('topic/') || isSolver ? 'solver' : path;
   const title = path.startsWith('topic/')
     ? (topicById(topicId)?.title ?? 'Topic')
-    : (nav.find((n) => n.path === path)?.label ??
-      (path === 'about' ? 'About CyberStat' : 'Welcome to CyberStat'));
+    : isSolver
+      ? 'Equation Solver'
+      : (nav.find((n) => n.path === path)?.label ??
+        (path === 'about' ? 'About CyberStat' : 'Welcome to CyberStat'));
   useEffect(() => {
     const onHash = () => setHash(location.hash || '#/');
     window.addEventListener('hashchange', onHash);
@@ -120,14 +120,8 @@ export function App() {
             <br />
             The numbers will follow.
           </p>
-          <a href="#/topic/normal">
-            Start with the fundamentals <ArrowUpRight size={14} />
-          </a>
         </div>
         <div className="sidebar-bottom">
-          <a href="#/about" className={selected === 'about' ? 'active' : ''}>
-            <Info size={18} /> About the project
-          </a>
           <div className="creator">
             <span>AG</span>
             <div>
@@ -149,7 +143,7 @@ export function App() {
               className="top-search"
               onSubmit={(e) => {
                 e.preventDefault();
-                location.hash = `/course?q=${encodeURIComponent(search)}`;
+                location.hash = `/solver?q=${encodeURIComponent(search)}`;
                 setSearch('');
               }}
             >
@@ -168,27 +162,17 @@ export function App() {
             <PwaControls />
           </div>
         </header>
-        <main
-          id="main-content"
-          ref={mainRef}
-          tabIndex={-1}
-          className={`main-content ${!path ? 'welcome' : ''}`}
-        >
+        <main id="main-content" ref={mainRef} tabIndex={-1} className="main-content">
           {storageFailed && (
             <p role="status" className="review-note">
               Browser storage is unavailable. Progress is kept only for this session.
             </p>
           )}
-          {!path ? (
-            <Welcome />
-          ) : path === 'dashboard' ? (
-            <Dashboard progress={progress} />
-          ) : path === 'course' ? (
-            <Course
+          {isSolver ? (
+            <EquationSolver
               key={hash}
               initialLecture={lecture}
               initialQuery={params.get('q') ?? ''}
-              progress={progress}
             />
           ) : path === 'examples' ? (
             <Examples key={hash} initialLecture={lecture} />
@@ -206,7 +190,7 @@ export function App() {
           ) : (
             <section className="empty-state">
               <h1>That page isn’t in this notebook.</h1>
-              <a className="button primary" href="#/dashboard">
+              <a className="button primary" href="#/solver">
                 Return to your study desk
               </a>
             </section>
@@ -222,7 +206,7 @@ export function App() {
         </footer>
       </div>
       <nav className="mobile-nav" aria-label="Mobile navigation">
-        {[{ path: '', label: 'Home', icon: Home }, ...nav.slice(0, 3)].map((n) => (
+        {nav.map((n) => (
           <a
             key={n.path}
             href={`#/${n.path}`}
@@ -230,21 +214,9 @@ export function App() {
             aria-current={selected === n.path ? 'page' : undefined}
           >
             <n.icon size={20} />
-            <span>
-              {n.path === 'dashboard'
-                ? 'Overview'
-                : n.path === 'course'
-                  ? 'Course'
-                  : n.path === 'examples'
-                    ? 'Examples'
-                    : n.label}
-            </span>
+            <span>{n.label}</span>
           </a>
         ))}
-        <a href="#/formulas" className={selected === 'formulas' ? 'active' : ''}>
-          <FunctionSquare size={20} />
-          <span>Formulas</span>
-        </a>
       </nav>
     </>
   );

@@ -1,18 +1,22 @@
 import { test, expect, chromium } from '@playwright/test';
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
-test('welcome, course search, navigation and explicit progress persist', async ({ page }) => {
+import { readFile, writeFile } from 'node:fs/promises';
+test('unified solver, retained lecture search and explicit progress persist', async ({ page }) => {
   const errors: string[] = [];
   page.on('pageerror', (e) => errors.push(e.message));
   await page.goto('/');
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('Less memorizing');
-  await page.getByRole('link', { name: 'Enter your study space' }).click();
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('A little progress');
-  await page.getByRole('link', { name: 'Start studying', exact: true }).click();
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Equation Solver');
+  await page.locator('.solver-lecture-tools>summary').click();
+  await page
+    .locator('.solver-topic-list a')
+    .filter({ hasText: 'Normal distribution' })
+    .first()
+    .click();
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Normal distribution');
   await page.getByRole('button', { name: 'Mark as studied', exact: true }).click();
   await page.reload();
   await expect(page.getByRole('button', { name: 'Marked as studied' })).toBeVisible();
   await page.goto('/#/course');
+  await page.locator('.solver-lecture-tools>summary').click();
   await page
     .getByRole('searchbox', { name: 'Search topics, concepts, or formulas…' })
     .fill('not-a-real-topic');
@@ -22,11 +26,13 @@ test('welcome, course search, navigation and explicit progress persist', async (
     .getByRole('searchbox', { name: 'Search topics, concepts, or formulas…' })
     .fill('chi-square');
   await expect(
-    page.getByRole('heading', { name: 'Chi-square distribution', exact: true }),
+    page.locator('.solver-topic-list a').filter({ hasText: 'Chi-square distribution' }),
   ).toBeVisible();
   expect(errors).toEqual([]);
 });
-test('source example, two solution modes, validation, reset and export', async ({ page }) => {
+test('source example, two solution modes, validation, reset and export', async ({
+  page,
+}, testInfo) => {
   await page.goto('/#/topic/normal?example=clinic-b');
   await expect(page.locator('.result-answer')).toContainText('69.1462');
   await expect(page.locator('.source-answer')).toContainText('0.5987');
@@ -50,9 +56,12 @@ test('source example, two solution modes, validation, reset and export', async (
   });
   await page.getByRole('button', { name: 'Export solution as PDF' }).click();
   await expect(page.locator('body')).toHaveAttribute('data-print-requested', 'true');
-  await mkdir('docs/qa', { recursive: true });
   await page.emulateMedia({ media: 'print' });
-  await page.pdf({ path: 'docs/qa/cotton-solution.pdf', format: 'A4', printBackground: true });
+  await page.pdf({
+    path: testInfo.outputPath('cotton-solution.pdf'),
+    format: 'A4',
+    printBackground: true,
+  });
 });
 test('all calculation examples have working solutions and rendered mathematics', async ({
   page,
@@ -72,8 +81,7 @@ test('all calculation examples have working solutions and rendered mathematics',
 });
 test('responsive pages have no document overflow at 320, 375, 768, 1024 and 1440px', async ({
   page,
-}) => {
-  await mkdir('docs/qa', { recursive: true });
+}, testInfo) => {
   for (const width of [320, 375, 768, 1024, 1440]) {
     await page.setViewportSize({ width, height: 950 });
     for (const route of [
@@ -95,15 +103,15 @@ test('responsive pages have no document overflow at 320, 375, 768, 1024 and 1440
       expect(sizes.scroll, `${width}px ${route}`).toBeLessThanOrEqual(sizes.width);
     }
     await page.goto('/');
-    await page.screenshot({ path: `docs/qa/welcome-${width}.png`, fullPage: true });
+    await page.screenshot({ path: testInfo.outputPath(`solver-${width}.png`), fullPage: true });
   }
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto('/#/topic/normal?example=weight-b');
-  await page.screenshot({ path: 'docs/qa/workspace-desktop.png', fullPage: true });
+  await page.screenshot({ path: testInfo.outputPath('workspace-desktop.png'), fullPage: true });
   await page.setViewportSize({ width: 375, height: 950 });
   await page.goto('/#/topic/normal?example=weight-b');
   await expect(page.getByRole('navigation', { name: 'Mobile navigation' })).toBeVisible();
-  await page.screenshot({ path: 'docs/qa/workspace-mobile.png', fullPage: true });
+  await page.screenshot({ path: testInfo.outputPath('workspace-mobile.png'), fullPage: true });
 });
 test('PWA manifest, installability, offline reload and all bundled lecture PDFs', async () => {
   // Keep the profile path short: Chrome CacheStorage adds deeply nested paths on Windows.
@@ -196,16 +204,13 @@ test('keyboard navigation, form names, reduced motion and study-text contrast', 
   await expect(page.locator('main')).toBeFocused();
   await page.goto('/#/topic/normal');
   await page.emulateMedia({ reducedMotion: 'reduce' });
-  const fields = await page
-    .locator('input:not([type=checkbox]),select')
-    .evaluateAll((elements) =>
-      elements.map((el) => ({
-        name:
-          el.getAttribute('aria-label') ||
-          (el as HTMLInputElement).labels?.[0]?.textContent?.trim(),
-        tag: el.tagName,
-      })),
-    );
+  const fields = await page.locator('input:not([type=checkbox]),select').evaluateAll((elements) =>
+    elements.map((el) => ({
+      name:
+        el.getAttribute('aria-label') || (el as HTMLInputElement).labels?.[0]?.textContent?.trim(),
+      tag: el.tagName,
+    })),
+  );
   expect(fields.every((f) => !!f.name)).toBe(true);
   const checks = await page
     .locator('.button.primary')
