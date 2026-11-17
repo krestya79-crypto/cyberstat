@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Calculator, Library, FunctionSquare, Search, ChevronRight } from 'lucide-react';
 import { Examples, Formulas } from './pages/ReferencePages';
 import { StatisticalSolver } from './pages/StatisticalSolver';
+import { FormulaDerivations } from './pages/FormulaDerivations';
 import { PwaControls, useConnection } from './components/Pwa';
 import { project } from './content/project';
 const nav = [
@@ -127,8 +128,14 @@ export function App() {
             />
           ) : path === 'examples' ? (
             <Examples key={hash} initialSource={Number(params.get('source')) || 0} />
+          ) : path === 'formulas' && params.get('view') === 'proofs' ? (
+            <FormulaDerivations key={hash} entryKey={params.get('entry') ?? undefined} />
           ) : path === 'formulas' ? (
-            <Formulas key={hash} initialQuery={params.get('q') ?? ''} />
+            <Formulas
+              key={hash}
+              initialQuery={params.get('q') ?? ''}
+              entryKey={params.get('entry') ?? undefined}
+            />
           ) : (
             <section className="empty-state">
               <h1>That page is no longer available.</h1>

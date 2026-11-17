@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Search, SlidersHorizontal, ArrowUpRight, AlertTriangle } from 'lucide-react';
 import { topics, topicById } from '../content/topics';
 import { examples } from '../content/examples';
 import { MathText } from '../components/Math';
 import { SourceLink } from '../components/SourceLink';
+import { coverageFor, coverageLabels, derivationsUrl } from '../content/derivations';
+import '../derivations.css';
 export const problemUrl = (topic: string, method?: string, example?: string) =>
   `#/solver?formula=${method ?? (topic === 'z-score' ? 'z-score' : topicById(topic)?.methods[0]) ?? 'arithmetic-mean'}${example ? `&example=${example}` : ''}`;
 function Filters({
@@ -133,22 +135,40 @@ export function Examples({ initialSource = 0 }: { initialSource?: number }) {
     </>
   );
 }
-export function Formulas({ initialQuery = '' }: { initialQuery?: string }) {
+export function Formulas({
+  initialQuery = '',
+  entryKey,
+}: {
+  initialQuery?: string;
+  entryKey?: string;
+}) {
   const [query, setQuery] = useState(initialQuery),
     [source, setSource] = useState(0);
   const entries = topics
-    .flatMap((t) => t.formulas.map((f) => ({ topic: t, formula: f })))
+    .flatMap((t) => t.formulas.map((f, index) => ({ topic: t, formula: f, index })))
     .filter(
       ({ topic, formula }) =>
         (!source || topic.lecture === source) &&
         `${topic.title} ${formula.name} ${formula.tex}`.toLowerCase().includes(query.toLowerCase()),
     );
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => {
+      if (!entryKey) return;
+      const entry = document.getElementById(`formula-${entryKey}`);
+      entry?.scrollIntoView({ block: 'center' });
+      entry?.focus({ preventScroll: true });
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [entryKey]);
   return (
     <>
       <header className="page-heading">
         <span className="eyebrow">YOUR FORMULA NOTEBOOK</span>
         <h1>The right formula. In context.</h1>
         <p>A reference you can understand, with direct links to the method and its conditions.</p>
+        <a className="text-link notebook-derivations-link" href={derivationsUrl()}>
+          Formula Derivations &amp; Proofs <ArrowUpRight size={15} />
+        </a>
       </header>
       <Filters
         source={source}
@@ -159,8 +179,12 @@ export function Formulas({ initialQuery = '' }: { initialQuery?: string }) {
       />
       <div className="results-count">{entries.length} formulas & identities</div>
       <div className="formula-library">
-        {entries.map(({ topic, formula }) => (
-          <article key={`${topic.id}-${formula.name}`}>
+        {entries.map(({ topic, formula, index }) => (
+          <article
+            key={`${topic.id}-${formula.name}`}
+            id={`formula-${topic.id}:${index}`}
+            tabIndex={-1}
+          >
             <div>
               <span className="eyebrow">
                 SOURCE {topic.lecture} · PP. {topic.pages}
@@ -169,6 +193,9 @@ export function Formulas({ initialQuery = '' }: { initialQuery?: string }) {
               <a href={problemUrl(topic.id)} className="text-link">
                 {topic.title}
                 <ArrowUpRight size={14} />
+              </a>
+              <a className="formula-proof-link" href={derivationsUrl(`${topic.id}:${index}`)}>
+                {coverageLabels[coverageFor(topic.id, index).kind]}
               </a>
             </div>
             <MathText tex={formula.tex} block />

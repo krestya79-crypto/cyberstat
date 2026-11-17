@@ -1,0 +1,217 @@
+.notebook-derivations-link {
+  margin-top: 16px;
+}
+.formula-library .formula-proof-link {
+  display: block;
+  margin-top: 13px;
+  color: var(--sage);
+  font-size: 11px;
+  line-height: 1.6;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.formula-library article:focus {
+  outline: 2px solid var(--blue);
+  outline-offset: 4px;
+}
+.derivations-page {
+  max-width: 1120px;
+}
+.derivations-page .page-heading > .text-link {
+  margin-bottom: 22px;
+}
+.proof-introduction,
+.selected-formula-review,
+.lecture-proof,
+.lecture-formula-audit {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--paper);
+  padding: 24px;
+  margin: 22px 0;
+}
+.proof-introduction p,
+.lecture-proof p,
+.selected-formula-review p,
+.formula-audit-entry p,
+.proof-context dd {
+  font-size: 13px;
+  line-height: 1.9;
+}
+.proof-introduction p:first-child {
+  margin-top: 0;
+}
+.proof-introduction p:last-child {
+  margin-bottom: 0;
+}
+.proof-filters {
+  margin: 24px 0;
+  flex-wrap: wrap;
+}
+.proof-lecture {
+  margin: 38px 0;
+}
+.proof-lecture > .section-heading {
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.proof-lecture > .section-heading h2 {
+  margin: 0;
+  font-size: 26px;
+}
+.proof-heading h3 {
+  font-family: Georgia, serif;
+  font-size: 23px;
+  line-height: 1.45;
+  margin: 10px 0;
+}
+.proof-heading .muted {
+  margin: 0 0 14px;
+}
+.proof-sources,
+.proof-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+}
+.proof-sources .source-link {
+  min-height: 32px;
+}
+.proof-context {
+  padding: 18px;
+  background: var(--canvas);
+  border-radius: 8px;
+  margin: 20px 0;
+}
+.proof-context dt {
+  font-size: 11px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+.proof-context dd {
+  margin: 0 0 14px;
+}
+.proof-context dd:last-child {
+  margin-bottom: 0;
+}
+.proof-steps {
+  padding: 0;
+  list-style: none;
+}
+.proof-steps li {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr);
+  gap: 14px;
+  border-top: 1px solid var(--border);
+  padding: 23px 0;
+}
+.proof-steps h4,
+.proof-review h4 {
+  margin: 0 0 12px;
+  font-size: 14px;
+}
+.proof-steps p {
+  margin-bottom: 0;
+}
+.proof-steps .math-block,
+.proof-review .math-block,
+.selected-formula-review .math-block {
+  max-width: 100%;
+  overflow-x: auto;
+  padding: 8px 0;
+}
+.proof-expansion {
+  display: inline-block;
+  color: var(--sage);
+  font-size: 11px;
+  margin-bottom: 8px;
+}
+.proof-review {
+  padding: 20px;
+  border-left: 3px solid #a47a40;
+  background: #fbf7ef;
+  border-radius: 6px;
+  margin-bottom: 24px;
+}
+.proof-notebook-links {
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+}
+.proof-notebook-links strong {
+  display: block;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+.proof-notebook-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin: 0 20px 10px 0;
+  font-size: 12px;
+  color: var(--blue);
+  min-height: 32px;
+}
+.lecture-formula-audit summary {
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  min-height: 32px;
+}
+.formula-audit-entry {
+  padding: 23px 0;
+  border-top: 1px solid var(--border);
+  margin-top: 15px;
+}
+.formula-audit-entry h3 {
+  font-size: 17px;
+  margin: 10px 0;
+}
+.formula-audit-entry h3 a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--blue);
+}
+.coverage-status {
+  display: block;
+  font-size: 12px;
+  color: var(--sage);
+  line-height: 1.7;
+}
+.proof-no-derivation {
+  font-size: 13px;
+  line-height: 1.9;
+  padding: 18px;
+  background: var(--pale-blue);
+  border-radius: 8px;
+}
+.audit-proof-link {
+  margin-top: 10px;
+  margin-right: 20px;
+}
+#selected-formula-review,
+.formula-library article {
+  scroll-margin-top: 90px;
+}
+@media (max-width: 600px) {
+  .proof-introduction,
+  .selected-formula-review,
+  .lecture-proof,
+  .lecture-formula-audit {
+    padding: 16px;
+  }
+  .proof-steps li {
+    grid-template-columns: 24px minmax(0, 1fr);
+    gap: 8px;
+  }
+  .proof-heading h3 {
+    font-size: 21px;
+  }
+  .proof-context,
+  .proof-review {
+    padding: 13px;
+  }
+  .proof-sources {
+    gap: 6px 12px;
+  }
+}

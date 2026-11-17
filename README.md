@@ -6,6 +6,8 @@ CyberStat uses the existing React, TypeScript, Vite, KaTeX and jStat architectur
 
 The three main navigation sections are **Statistical Solver**, **Worked Examples**, and **Formula Notebook**. The preserved libraries retain all **47 original example parts/illustrations** and **49 original formulas/identities**, their layout, search, source filtering, notation and review notes. Links open the statistical workflow. Four original illustrations have no underlying calculation data; none is invented.
 
+**Formula Derivations & Proofs**, inside Formula Notebook, follows the four original lecture PDFs. It includes six displayed derivation chains, five separately labeled worked algebraic applications, and a source/status audit for all 49 Notebook entries. Stated results and assigned-but-unsupplied proofs are explicitly identified; printed errors are preserved with separate editorial corrections. Each entry links to its original lecture page. See the [four-lecture source audit](docs/LECTURE-DERIVATIONS.md).
+
 ## Project information
 
 - Student Name: **Ahmed Waleed Reda Gad**
